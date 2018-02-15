@@ -19,6 +19,7 @@ h1 a {
     margin-left: 40px;
 }
 
+
 h1, h2, h3, h4 {
     font-family: 'Lobster', cursive;
 }
@@ -43,7 +44,7 @@ h1, h2, h3, h4 {
 }
 
 .room {
-    margin-top: 50px;  
+    margin-top: 50px;
     margin-bottom: 50px;
     padding-left: 30px;
 }
