@@ -1,13 +1,18 @@
+{% load staticfiles %}
 <html>
     <head>
-        <title>Django Girls blog</title>
+      <link href="//fonts.googleapis.com/earlyaccess/nanumgothic.css" rel="stylesheet" type="text/css">
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+      <link rel="stylesheet" href="{% static 'css/app.css' %}">
+      <title>Django Girls blog</title>
     </head>
     <body>
-      <div>
+      <div class="page-header">
         <h1><a href="/">Moroom</a></h1>
       </div>
       {% for room in rooms %}
-        <div>
+        <div class="room">
           <h1><a href="">{{ room.title }}</a></h1>
           <p>published: {{ room.published_date }}</p>
           <p>{{ room.text|linebreaksbr }}</p>
