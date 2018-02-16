@@ -9,3 +9,6 @@ def room_list(request):
 def room_detail(request, pk):
     room = get_object_or_404(Room, pk=pk)
     return render(request, 'app/room_detail.html', {'room': room})
+
+def main(request):
+    return render(request, 'app/main.html', {})
