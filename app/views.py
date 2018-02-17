@@ -21,8 +21,8 @@ def input_data(request):
     return render(request, 'app/input_data.html', {})
 
 def room_new(request):
-    if request.method == "ROOM":
-        form = RoomForm(request.ROOM)
+    if request.method == "POST":
+        form = RoomForm(request.POST)
         if form.is_valid():
             room = form.save(commit=False)
             room.created_date = timezone.now()
