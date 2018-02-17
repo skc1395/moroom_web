@@ -1,13 +1,21 @@
+{% load staticfiles %}
 <html>
   <head>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <link href="//fonts.googleapis.com/earlyaccess/nanumgothic.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
     <title>모룸(Moroom)</title>
   </head>
   <body>
-    <div>
-      <h1><a href="{% url 'main' %}">방내놓기(양식)</a></h1>
+    <div class="page-header">
+      <a href="{% url 'room_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+      <h1>방내놓기(양식)</h1>
+      <h2><a href="{% url 'main' %}">메인페이지로</a></h2>
     </div>
     <div>
+      {% block content %}
+      {% endblock %}
     </div>
   </body>
 </html>
