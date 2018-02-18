@@ -21,6 +21,19 @@ class Option(models.Model):
     def __str__(self):
         return self.name
 
+class Door(models.Model):
+    name = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.name
+
+class University(models.Model):
+    name = models.CharField(max_length=50)
+    door = models.ManyToManyField(Door)
+
+    def __str__(self):
+        return self.name
+
 class Room(models.Model):
     title = models.CharField(max_length=50)
     created_date = models.DateTimeField(default=timezone.now)
@@ -37,6 +50,7 @@ class Room(models.Model):
     contact = models.CharField(max_length=50)
     room_option = models.ManyToManyField(Option)
     text = models.TextField(default=' ')
+    university = models.ForeignKey(University)
 
     def publish(self):
         self.published_date = timezone.now()

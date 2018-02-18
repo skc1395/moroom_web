@@ -32,3 +32,17 @@ def room_new(request):
     else:
         form = RoomForm()
     return render(request, 'app/room_edit.html', {'form': form})
+
+def room_edit(request, pk):
+    room = get_object_or_404(Room, pk=pk)
+    if request.method == "POST":
+        form = RoomForm(request.POST, instance=room)
+        if form.is_valid():
+            room = form.save(commit=False)
+            room.created_date = timezone.now()
+            room.published_date = timezone.now()
+            room.save()
+            return redirect('room_detail', pk=room.pk)
+    else:
+        form = RoomForm(instance=room)
+    return render(request, 'app/room_edit.html', {'form': form})
