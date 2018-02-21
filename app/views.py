@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from .models import Room, RoomType, RoomAgree, Option
 from .forms import RoomForm
+from .get_geocode import Get_geocode
+from . import constant
 
 def room_list(request):
     rooms = Room.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
@@ -25,6 +27,8 @@ def room_new(request):
         form = RoomForm(request.POST)
         if form.is_valid():
             room = form.save(commit=False)
+            room.location_long = Get_geocode(request.POST['address'],constant.API_KEY)[0]
+            room.location_lat = Get_geocode(request.POST['address'],constant.API_KEY)[1]
             room.created_date = timezone.now()
             room.published_date = timezone.now()
             room.save()

@@ -43,6 +43,9 @@ class Room(models.Model):
     deposit_new = models.IntegerField()
     rentfee_new = models.IntegerField()
     manage_fee = models.CharField(max_length=30)
+    address = models.CharField(max_length=100)
+    location_long = models.CharField(max_length=50)
+    location_lat = models.CharField(max_length=50)
     date_start = models.DateField()
     date_end = models.DateField()
     room_type = models.ForeignKey(RoomType)
@@ -51,6 +54,7 @@ class Room(models.Model):
     room_option = models.ManyToManyField(Option)
     text = models.TextField(default=' ')
     university = models.ForeignKey(University)
+
 
     def publish(self):
         self.published_date = timezone.now()
