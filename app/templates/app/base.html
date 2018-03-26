@@ -1,43 +1,14 @@
-<!-- {% load staticfiles %}
-<html>
-  <head>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link href="//fonts.googleapis.com/earlyaccess/nanumgothic.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="{% static 'css/app.css' %}">
-    <title>모룸(Moroom)</title>
-  </head>
-  <body>
-    <div class="page-header">
-      <h1>방구경하기</h1>
-      <h2><a href="{% url 'main' %}">메인페이지로</a></h2>
-    </div>
-    <div class="content container" style="margin-left:0px;margin-right:0px;">
-      <div class="row">
-        <div class="col-md-8">
-        {% block content %}
-        {% endblock %}
-        </div>
-      </div>
-    </div>
-  </body>
-</html> -->
-
 {% load staticfiles %}
-<html lang="en">
+<html lang="ko">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
     <title>모룸(Moroom)</title>
 
     <!-- Bootstrap CSS-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-    <!-- <link href="../../dist/css/bootstrap.min.css" rel="stylesheet"> -->
     <link href="//fonts.googleapis.com/earlyaccess/nanumgothic.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
   </head>
@@ -67,19 +38,23 @@
 
     <main role="main" class="container">
 
-      <div class="starter-template">
-        <h1>Bootstrap starter template</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
-
-      </div>
-      <!-- <div class="content container" style="margin-left:0px;margin-right:0px;"> -->
+      <div class="content container">
         <div class="row">
           <div class="col-md-8">
           {% block content %}
+          <!-- {% for room in rooms %}
+            <div class="room">
+              <div class="date">
+                {{ room.published_date }}
+              </div>
+              <h1><a href="">{{ room.title }}</a></h1>
+              <p>{{ rooms.text|linebreaksbr }}</p>
+
+          {% endfor %} -->
           {% endblock %}
           </div>
         </div>
-      <!-- </div> -->
+      </div>
 
     </main><!-- /.container -->
 
