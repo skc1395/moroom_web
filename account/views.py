@@ -32,8 +32,7 @@ def signup(request):
             profile.contact = profile_form.cleaned_data['contact']
             profile.save()
 
-            return redirect('/')
-
+            return redirect('log_in')
 
 
 
@@ -61,7 +60,7 @@ def log_in(request):
 
         if user is not None:
             login(request, user)
-            return redirect('home')
+            return redirect('main')
 
         else:
             return HttpResponse('로그인이 실패하였습니다')
@@ -76,7 +75,7 @@ def log_in(request):
 def log_out(request):
     logout(request)
 
-    return redirect('home')
+    return redirect('main')
 
 
 # def check_id(request):

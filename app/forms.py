@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Room, RoomType, RoomAgree, Option
+from .models import Room, RoomType, RoomAgree, Option, RoomStatus
 
 class RoomForm(forms.ModelForm):
 
@@ -22,4 +22,5 @@ class RoomForm(forms.ModelForm):
         'contact',
         'room_option',
         'university',
-        'text',)
+        'text',
+        'room_status',)

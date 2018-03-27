@@ -1,9 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
-from .models import Room, RoomType, RoomAgree, Option
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from .models import Room, RoomType, RoomAgree, Option, RoomStatus
 from .forms import RoomForm
 from .get_geocode import Get_geocode
 from . import constant
+
 
 def room_list(request):
     rooms = Room.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
@@ -22,11 +25,14 @@ def room_input(request):
 def input_data(request):
     return render(request, 'app/input_data.html', {})
 
+@login_required(login_url='log_in')
 def room_new(request):
     if request.method == "POST":
+        user = User.objects.get(username=request.user.username)
         form = RoomForm(request.POST)
         if form.is_valid():
             room = form.save(commit=False)
+            room.user = user
             room.location_long = Get_geocode(request.POST['address'],constant.API_KEY)[0]
             room.location_lat = Get_geocode(request.POST['address'],constant.API_KEY)[1]
             room.created_date = timezone.now()
@@ -36,6 +42,7 @@ def room_new(request):
     else:
         form = RoomForm()
     return render(request, 'app/room_edit.html', {'form': form})
+
 
 def room_edit(request, pk):
     room = get_object_or_404(Room, pk=pk)

@@ -1,14 +1,25 @@
 {% extends 'app/base.html' %}
+{% load staticfiles %}
 
-{% block content %}
-    <div class="room">
-        {% if room.published_date %}
-            <div class="date">
-                {{ room.published_date }}
-            </div>
-        {% endif %}
-        <a class="btn btn-default" href="{% url 'room_edit' pk=room.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
-        <h1>{{ room.title }}</h1>
-        <p>{{ room.text|linebreaksbr }}</p>
+  {% block content %}
+  <main role="main" class="container">
+    <div class="content container">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="room">
+              {% if room.published_date %}
+                  <div class="date">
+                    {{ room.published_date }}
+                  </div>
+              {% endif %}
+              {% if room.user.username == request.user.username %}
+                <a class="btn btn-default" href="{% url 'room_edit' pk=room.pk %}">edit</a>
+              {% endif %}
+              <h1>{{ room.title }}</h1>
+              <p>{{ room.text|linebreaksbr }}</p>
+          </div>
+        </div>
+      </div>
     </div>
+  </main>
 {% endblock %}
