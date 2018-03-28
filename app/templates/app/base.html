@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" href="{% static 'img/favicon.ico' %}">
+    <link rel="icon" href="{% static 'img/house.png' %}">
 
     <title>모룸(Moroom)</title>
 
@@ -14,27 +14,28 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
     <!-- Custom styles for this template -->
     <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
+
   </head>
 
   <body>
 
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-      <a class="navbar-brand" href="{% url 'main' %}">moroom</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top" style="padding: 0px; padding-right: 20px;">
+      <a class="navbar-brand mx-auto" href="{% url 'main' %}"><img src="{% static 'img/main.png'%}" style="padding-left: 75px" height="50"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav ml-auto">
           {% if request.user.is_authenticated %}
-          <li class="nav-item active">
+          <li class="nav-item">
             <a class="nav-link" href="{% url 'log_out' %}">로그아웃하기<span class="sr-only">(current)</span></a>
           </li>
           {% else %}
-          <li class="nav-item active">
+          <li class="nav-item">
             <a class="nav-link" href="{% url 'log_in' %}">로그인하기<span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item active">
+          <li class="nav-item">
             <a class="nav-link" href="{% url 'signup' %}">회원가입<span class="sr-only">(current)</span></a>
           </li>
           {% endif %}
@@ -42,31 +43,15 @@
             <a class="nav-link" href="{% url 'room_list' %}">방구경하기</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" href="{% url 'room_input' %}">방내놓기</a>
+            <a class="nav-link" href="{% url 'room_input' %}">방내놓기</a>
           </li>
         </ul>
       </div>
     </nav>
 
+    {% block content %}
 
-      <!-- <div class="content container">
-        <div class="row">
-          <div class="col-md-8"> -->
-          {% block content %}
-          <!-- {% for room in rooms %}
-            <div class="room">
-              <div class="date">
-                {{ room.published_date }}
-              </div>
-              <h1><a href="">{{ room.title }}</a></h1>
-              <p>{{ rooms.text|linebreaksbr }}</p>
-
-          {% endfor %} -->
-          {% endblock %}
-          <!-- </div>
-        </div>
-      </div> -->
-
+    {% endblock %}
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -75,7 +60,6 @@
     <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="../../../../assets/js/vendor/holder.min.js"></script>
 
   </body>
 </html>

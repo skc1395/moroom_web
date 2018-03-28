@@ -35,7 +35,6 @@ def signup(request):
             return redirect('log_in')
 
 
-
     else:
         user_form = UserForm()
         profile_form = ProfileForm()

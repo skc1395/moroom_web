@@ -1,19 +1,43 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>로그인</title>
-</head>
-<body>
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>로그인</title>
+
+      <!-- Bootstrap CSS-->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <link href="//fonts.googleapis.com/earlyaccess/nanumgothic.css" rel="stylesheet" type="text/css">
+
+      <!-- Custom styles for this template -->
+      <link href="{% static 'css/signin.css' %}" rel="stylesheet">
+
+  </head>
 
 
-<form method="post">
-  {% csrf_token %}
-  {{ form.username.label_tag }}
-  {{ form.username }}
-  {{ form.password.label_tag }}
-  {{ form.password }}
-  <button type="submit">로그인</button>
-</form>
-</body>
+  <body class="text-center">
+
+    <form class="form-signin" method="post">
+      <div class="container">
+        <img class="mb-4" src="{% static 'img/logo_1.png' %}" height="72" align="middle">
+      </div>
+      {% csrf_token %}
+      {{ form.username.label_tag }}
+      {{ form.username }}
+      {{ form.password.label_tag }}
+      {{ form.password }}
+      <label for="inputID" class="sr-only">ID</label>
+      <input type="ID" id="inputID" class="form-control" placeholder="ID" required autofocus>
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+      </div>
+      <button type="submit">로그인</button>
+    </form>
+  </body>
 </html>
