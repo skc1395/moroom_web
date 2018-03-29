@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from .models import Room, RoomType, RoomAgree, Option, RoomStatus
 from .forms import RoomForm
 from .get_geocode import Get_geocode
-from . import constant
+# from . import constant
 
 
 def room_list(request):
