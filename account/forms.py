@@ -31,7 +31,7 @@ class LoginForm(ModelForm):
         model = User
         fields = ['username']
         labels = {
-            'username': '아아디'
+            'username': '아이디'
         }
 
 
