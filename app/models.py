@@ -41,6 +41,9 @@ class University(models.Model):
     def __str__(self):
         return self.name
 
+class Photo(models.Model):
+    image = models.ImageField()
+
 class Room(models.Model):
     user = models.ForeignKey(User)
     title = models.CharField(max_length=50)
@@ -63,7 +66,7 @@ class Room(models.Model):
     room_option = models.ManyToManyField(Option)
     text = models.TextField(default=' ')
     university = models.ForeignKey(University)
-
+    images = models.ForeignKey(Photo)
 
     def publish(self):
         self.published_date = timezone.now()

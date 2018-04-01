@@ -17,6 +17,13 @@
               {% endif %}
               <h1>{{ room.title }}</h1>
               <p>{{ room.text|linebreaksbr }}</p>
+
+
+              {% for a in room.images_set.all %}
+                <img src="{{ a.url }}">
+
+              {% endfor %}
+
           </div>
         </div>
       </div>

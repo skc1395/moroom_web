@@ -2,10 +2,10 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .models import Room, RoomType, RoomAgree, Option, RoomStatus
-from .forms import RoomForm
+from .models import Room, RoomType, RoomAgree, Option, RoomStatus,Photo
+from .forms import RoomForm, FileFieldForm
 from .get_geocode import Get_geocode
-# from . import constant
+from . import constant
 
 
 def room_list(request):
@@ -30,6 +30,9 @@ def room_new(request):
     if request.method == "POST":
         user = User.objects.get(username=request.user.username)
         form = RoomForm(request.POST)
+        files = FileFieldForm(request.FILES)
+        file_list = request.FILES.getlist('file_field')
+
         if form.is_valid():
             room = form.save(commit=False)
             room.user = user
@@ -37,11 +40,20 @@ def room_new(request):
             room.location_lat = Get_geocode(request.POST['address'],constant.API_KEY)[1]
             room.created_date = timezone.now()
             room.published_date = timezone.now()
-            room.save()
+            for f in file_list:
+                photo = Photo(image=f)
+                photo_file = photo.save()
+                picture = Photo.objects.get(image=f)
+                room.images = picture
+                room.save()
             return redirect('room_detail', pk=room.pk)
     else:
         form = RoomForm()
-    return render(request, 'app/room_edit.html', {'form': form})
+        files = FileFieldForm()
+    return render(request, 'app/room_edit.html', {
+    'form': form,
+    'files' : files,
+    })
 
 
 def room_edit(request, pk):
