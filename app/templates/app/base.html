@@ -27,23 +27,26 @@
 
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" style="padding-left: 10px;" href="{% url 'tutorial' %}">튜토리얼<span class="sr-only">(current)</span></a>
+          </li>
           {% if request.user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'log_out' %}">로그아웃하기<span class="sr-only">(current)</span></a>
+            <a class="nav-link" style="padding-left: 10px;" href="{% url 'log_out' %}">로그아웃하기<span class="sr-only">(current)</span></a>
           </li>
           {% else %}
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'log_in' %}">로그인하기<span class="sr-only">(current)</span></a>
+            <a class="nav-link" style="padding-left: 10px;" href="{% url 'log_in' %}">로그인하기<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'signup' %}">회원가입<span class="sr-only">(current)</span></a>
+            <a class="nav-link" style="padding-left: 10px;" href="{% url 'signup' %}">회원가입<span class="sr-only">(current)</span></a>
           </li>
           {% endif %}
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'room_list' %}">방구경하기</a>
+            <a class="nav-link" style="padding-left: 10px;" href="{% url 'room_list' %}">방구경하기</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'room_input' %}">방내놓기</a>
+            <a class="nav-link" style="padding-left: 10px;" href="{% url 'room_input' %}">방내놓기</a>
           </li>
         </ul>
       </div>

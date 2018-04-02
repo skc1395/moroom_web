@@ -89,3 +89,9 @@ body {
     margin-top: 7rem;
   }
 }
+
+/* @media (min-width: 992px) {
+  .container {
+    max-width:1140px;
+  } */
+}

@@ -69,3 +69,7 @@ def room_edit(request, pk):
     else:
         form = RoomForm(instance=room)
     return render(request, 'app/room_edit.html', {'form': form})
+
+
+def tutorial(request):
+    return render(request, 'app/tutorial.html', {}) 
