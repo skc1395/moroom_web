@@ -23,7 +23,23 @@
     </div>
     <h1 class="h3 mb-3 font-weight-normal">Please sign up</h1>
     {% csrf_token %}
-    <p style="margin-right: 16px;">
+
+    <p style="margin-bottom: 0px;">
+      {{ user_form.first_name.errors }}
+      {{ user_form.first_name.label_tag }}
+      {{ user_form.first_name }}
+    </p>
+    <p style="margin-right: 13px; margin-bottom: 0px;">
+      {{ profile.contact.errors }}
+      {{ profile_form.contact.label_tag }}
+      {{ profile_form.contact }}
+    </p>
+    <p style="margin-right: 15px;margin-bottom: 0px;">
+      {{ user_form.email.errors }}
+      {{ user_form.email.label_tag }}
+      {{ user_form.email }}
+    </p>
+    <p style="margin-right: 16px; margin-bottom: 0px;">
       {{ user_form.username.errors }}
       {{ user_form.username.label_tag }}
       {{ user_form.username }}
@@ -33,24 +49,11 @@
       {{ user_form.password.label_tag }}
       {{ user_form.password }}
     </p>
-    <p style="margin-right: 44px;">
-      {{ user_form.email.errors }}
-      {{ user_form.email.label_tag }}
-      {{ user_form.email }}
-    </p>
-    <p>
-      {{ user_form.first_name.errors }}
-      {{ user_form.first_name.label_tag }}
-      {{ user_form.first_name }}
-    </p>
-    <p style="margin-right: 13px;">
-      {{ profile.contact.errors }}
-      {{ profile_form.contact.label_tag }}
-      {{ profile_form.contact }}
-    </p>
+
           <!--{{ user_form.as_p }}-->
       <!--{{ profile_form.as_p }}-->
-    <button class="btn btn-lg btn-primary btn-block" type="submit">회원가입</button>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" style="margin-bottom: 10px">회원가입</button>
+    <a href="{% url 'log_in' %}">로그인하러가기</a>
   </form>
 </body>
 </html>

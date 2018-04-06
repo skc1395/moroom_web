@@ -14,7 +14,9 @@ class UserForm(ModelForm):
                   'email',
                   ]
         labels = {
-            'username': '아이디'
+            'username': '아이디',
+            'first_name': '이름',
+            'email': '이메일',
         }
 
 class ProfileForm(ModelForm):
