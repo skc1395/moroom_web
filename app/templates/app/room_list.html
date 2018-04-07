@@ -1,6 +1,8 @@
 {% extends 'app/base.html' %}
+{% load staticfiles %}
 
 {% block content %}
+<h1 class="display-4"><img src="{% static 'img/submain_1.png' %}" width="100%" style="margin: 0px;"></h1>
   <main role="main" class="container">
   {% for room in rooms %}
   <div class="content container">
