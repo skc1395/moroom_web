@@ -2,12 +2,12 @@
 {% load staticfiles %}
 
 {% block content %}
-<h1 class="display-4"><img src="{% static 'img/tutorial.png' %}" width="100%" style="margin: 0px;"></h1>
-  <main role="main" class="container">
+  <h1 class="display-4"><img src="{% static 'img/tutorial.png' %}" width="100%" style="margin: 0px;"></h1>
+  <main role="main">
     <!-- 렌토 -->
     <div class="d-flex justify-content-center">
-      <a data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample1">
-          <img src="{% static 'img/logo.png' %}">
+      <a data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample1" style="margin-top: 30px; margin-bottom: 50px">
+          <img src="{% static 'img/tut1.png' %}" width="75%">
       </a>
       </div>
       <div class="collapse" id="collapseExample1">
@@ -24,8 +24,8 @@
 
     <!-- 렌티 -->
     <div class="d-flex justify-content-center">
-      <a data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">
-          <img src="{% static 'img/logo.png' %}">
+      <a data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2" align="right" style="margin-bottom: 80px">
+          <img src="{% static 'img/tut2.png' %}" width="75%">
       </a>
       </div>
       <div class="collapse" id="collapseExample2">
@@ -42,8 +42,8 @@
 
     <!-- 계약하기 -->
     <div class="d-flex justify-content-center">
-      <a data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample3">
-          <img src="{% static 'img/logo.png' %}">
+      <a data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample3" align="middle" style="margin-bottom: 80px">
+          <img src="{% static 'img/tut3.png' %}" width="65%">
       </a>
       </div>
       <div class="collapse" id="collapseExample3">
@@ -57,28 +57,5 @@
         </div>
       </div>
     </div>
-    <div class="d-flex justify-content-center">
-      <a data-toggle="collapse" href="#collapseExample4" role="button" aria-expanded="false" aria-controls="collapseExample4">
-          <img src="{% static 'img/logo.png' %}">
-      </a>
-      </div>
-      <div class="collapse" id="collapseExample4">
-        <div class="card card-body">
-          <h2>
-            전대차는 기본적으로 집주인의 동의가 꼭 필요합니다. (집주인 동의가 없는거래는 불법입니다.)
-계약할 시 계약서 내용을 모두 꼼꼼히 확인하세요
-계약기간 만료 후 방 내부 훼손 등 문제를 대비하여 계약 전 방 상태 사진을 보관해 두시는 것을 권장합니다.
-공개되는 연락처는 개인정보 보호를 위해 휴대폰 번호보다는 오픈채팅이나 카카오톡 아이디 사용을 권장합니다.
-월세 납입 방식은 개별적으로 협의 후 진행하시면 됩니다.
-
-
-          </h2>
-          <h3>
-            ****moroom은 거래중개자이며 거래판매당사자가 아닙니다. 따라서 moroom은 계약정보 및 거래에 대하여 책임을 지지 않습니다. ****
-          </h3>
-        </div>
-      </div>
-    </div>
-
   </main>
 {% endblock %}
