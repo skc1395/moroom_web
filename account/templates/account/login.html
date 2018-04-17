@@ -13,7 +13,11 @@
 
       <!-- Custom styles for this template -->
       <link href="{% static 'css/signin.css' %}" rel="stylesheet">
-
+      <style>
+      .mb-4, .my-4 {
+          margin-bottom: 0.5rem!important;
+      }
+      </style>
   </head>
 
 
@@ -24,6 +28,11 @@
         <a href="{% url 'main' %}"><img class="mb-4" src="{% static 'img/logo_1.png' %}" height="120px" align="middle"></a>
       </div>
       {% csrf_token %}
+      {% if messages %}
+          {% for message in messages %}
+          <div{% if message.tags == 'success' %} class="alert alert-success" role="alert" {% endif %}>{{ message }}</div>
+          {% endfor %}
+      {% endif %}
       <h1 class="h3 mb-3 font-weight-normal" style="font-size:30px">Please login</h1>
       <label for="inputID" class="sr-only">ID</label>
       <input type="ID" id="inputID" class="form-control" placeholder="아이디" name="username" required autofocus>

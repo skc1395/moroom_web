@@ -4,18 +4,19 @@
 {% block content %}
 <h1 class="display-4"><img src="{% static 'img/room_list.png' %}" width="100%" style="margin: 0px;"></h1>
   <main role="main" class="container">
+    <div class="card-columns" style="display: inline-block; column-break-inside: avoid">
   {% for room in rooms %}
-  <div class="content container">
-    <div class="row">
-      <div class="col-md-8">
-        <div class="room">
-          <h1><a href="{% url 'room_detail' pk=room.pk %}">{{ room.title }}</a></h1>
-          <p>published: {{ room.published_date }}</p>
-          <p>{{ room.text|linebreaksbr }}</p>
+      <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="{{ room.photo.first.image.url }}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title"><a href="{% url 'room_detail' pk=room.pk %}">{{ room.title }}</a></h5>
+          <p class="card-text">published: {{ room.published_date }}</p>
+          <p class="card-text">{{ room.text|linebreaksbr }}</p>
+          <a href="{% url 'room_detail' pk=room.pk %}" class="btn btn-primary">자세히 보기</a>
         </div>
       </div>
-    </div>
-  </div>
+
   {% endfor %}
+  </div>
   </main>
 {% endblock %}

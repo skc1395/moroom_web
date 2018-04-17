@@ -3,6 +3,7 @@ from django.shortcuts import redirect
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
+from django.contrib import messages
 from .models import Profile
 from .forms import UserForm, ProfileForm, LoginForm, FileFieldForm
 
@@ -31,6 +32,8 @@ def signup(request):
             profile = Profile.objects.get(user=obj)
             profile.contact = profile_form.cleaned_data['contact']
             profile.save()
+
+            messages.success(request, '회원가입이 완료되었습니다.')
 
             return redirect('log_in')
 

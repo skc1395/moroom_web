@@ -14,7 +14,8 @@ def room_list(request):
 
 def room_detail(request, pk):
     room = get_object_or_404(Room, pk=pk)
-    return render(request, 'app/room_detail.html', {'room': room})
+    photos = room.photo.all()
+    return render(request, 'app/room_detail.html', {'room': room, 'photos':photos})
 
 def main(request):
     return render(request, 'app/main.html', {})
@@ -40,12 +41,10 @@ def room_new(request):
             room.location_lat = Get_geocode(request.POST['address'],constant.API_KEY)[1]
             room.created_date = timezone.now()
             room.published_date = timezone.now()
+            room.save()
+            room_obj= Room.objects.get(id=room.pk)
             for f in file_list:
-                photo = Photo(image=f)
-                photo_file = photo.save()
-                picture = Photo.objects.get(image=f)
-                room.images = picture
-                room.save()
+                Photo.objects.create(image=f, rooms=room_obj)
             return redirect('room_detail', pk=room.pk)
     else:
         form = RoomForm()
@@ -72,4 +71,4 @@ def room_edit(request, pk):
 
 
 def tutorial(request):
-    return render(request, 'app/tutorial.html', {}) 
+    return render(request, 'app/tutorial.html', {})

@@ -13,7 +13,11 @@
 
     <!-- Custom styles for this template -->
     <link href="{% static 'css/signup.css' %}" rel="stylesheet">
-
+    <style>
+    .mb-4, .my-4 {
+        margin-bottom: 0.5rem!important;
+    }
+    </style>
 </head>
 <body class="text-center">
   <form class="form-signup" method="post" action="{% url 'signup' %}" enctype="multipart/form-data">

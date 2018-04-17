@@ -22,12 +22,9 @@
               <h1>{{ room.title }}</h1>
               <p>{{ room.text|linebreaksbr }}</p>
 
-
-              {% for a in room.images_set.all %}
-                <img src="{{ a.url }}">
-
+              {% for photo in photos %}
+                <img src="{{ photo.image.url }}">
               {% endfor %}
-
           </div>
         </div>
       </div>
