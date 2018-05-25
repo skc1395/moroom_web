@@ -11,5 +11,5 @@ urlpatterns = [
     url(r'^$', views.main, name='main'),
     url(r'^room/(?P<pk>\d+)/edit/$', views.room_edit, name='room_edit'),
     url(r'^tutorial/$', views.tutorial, name='tutorial'),
-    
+
 ]

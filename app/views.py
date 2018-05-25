@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from .models import Room, RoomType, RoomAgree, Option, RoomStatus,Photo
 from .forms import RoomForm, FileFieldForm
 from .get_geocode import Get_geocode
-from . import constant
+# from . import constant
 
 
 def room_list(request):
@@ -28,6 +28,9 @@ def input_data(request):
 
 @login_required(login_url='log_in')
 def room_new(request):
+    room_types = RoomType.objects.all()
+    room_agrees = RoomAgree.objects.all()
+
     if request.method == "POST":
         user = User.objects.get(username=request.user.username)
         form = RoomForm(request.POST)
@@ -37,8 +40,8 @@ def room_new(request):
         if form.is_valid():
             room = form.save(commit=False)
             room.user = user
-            room.location_long = Get_geocode(request.POST['address'],constant.API_KEY)[0]
-            room.location_lat = Get_geocode(request.POST['address'],constant.API_KEY)[1]
+            # room.location_long = Get_geocode(request.POST['address'],constant.API_KEY)[0]
+            # room.location_lat = Get_geocode(request.POST['address'],constant.API_KEY)[1]
             room.created_date = timezone.now()
             room.published_date = timezone.now()
             room.save()
@@ -52,23 +55,33 @@ def room_new(request):
     return render(request, 'app/room_edit.html', {
     'form': form,
     'files' : files,
+    'room_types' : room_types,
+    'room_agrees' : room_agrees,
     })
 
 
 def room_edit(request, pk):
     room = get_object_or_404(Room, pk=pk)
     if request.method == "POST":
-        form = RoomForm(request.POST, instance=room)
-        if form.is_valid():
             room = form.save(commit=False)
+            room.user = user
+            room.location_long = Get_geocode(request.POST['address'],constant.API_KEY)[0]
+            room.location_lat = Get_geocode(request.POST['address'],constant.API_KEY)[1]
             room.created_date = timezone.now()
             room.published_date = timezone.now()
             room.save()
+            room_obj= Room.objects.get(id=room.pk)
+            for f in file_list:
+                Photo.objects.create(image=f, rooms=room_obj)
             return redirect('room_detail', pk=room.pk)
     else:
         form = RoomForm(instance=room)
-    return render(request, 'app/room_edit.html', {'form': form})
+        files = FileFieldForm()
 
+    return render(request, 'app/room_edit.html', {
+    'form': form,
+    'files' : files,
+    })
 
 def tutorial(request):
     return render(request, 'app/tutorial.html', {})

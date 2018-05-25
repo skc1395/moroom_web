@@ -1,5 +1,5 @@
 {% load staticfiles %}
-
+{% load socialaccount %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -17,6 +17,19 @@
       .mb-4, .my-4 {
           margin-bottom: 0.5rem!important;
       }
+      .btn-naver {
+          color: #fff;
+         background-color: #1ec800;
+          border-color: #34b31e;
+      }
+
+      .btn-kakao {
+          color: #3c3c3c;
+          background-color: #ffeb00;
+          border-color: #ffde00;
+      }
+
+      
       </style>
   </head>
 
@@ -45,6 +58,36 @@
       </div> -->
       <button class="btn btn-lg btn-primary btn-block" type="submit" style="margin-bottom: 10px">로그인</button>
       <a href="{% url 'signup' %}">회원가입</a>
+      <div class="container">
+      {% for provider in  providers %}
+        
+        
+          <row>
+            <div class="col-sm"></div>
+            <div class="col-sm">   
+              {% if provider.social_app %}
+
+              <a {% if provider.name == 'Kakao' %}class="btn btn-lg btn-primary btn-block btn-kakao" {% else %} class="btn btn-lg btn-primary btn-block btn-naver"{% endif %}href="{% provider_login_url provider.id %}">
+              {{ provider.name }}
+              </a> 
+                
+              {% else %}
+                <a>
+                  Provider {{ provider.name }} 설정이 필요합니다.
+                </a>
+              {% endif %}
+          </div>
+            <div class="col-sm"></div>
+       </row>
+      
+      {% endfor %}
+      </div>
+
     </form>
+    
+    
+
+
+    
   </body>
 </html>
