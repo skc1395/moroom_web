@@ -20,8 +20,6 @@ def room_detail(request, pk):
 def main(request):
     return render(request, 'app/main.html', {})
 
-def room_input(request):
-    return render(request, 'app/room_input.html', {})
 
 def input_data(request):
     return render(request, 'app/input_data.html', {})

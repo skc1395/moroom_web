@@ -14,8 +14,15 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
     <!-- Custom styles for this template -->
     <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
+
     <style>
-    
+
+    .img-gray{
+          -webkit-filter: grayscale(100%);
+          filter: gray;
+
+        }
+        
     @media (min-width: 768px) {
       .container {
         width: 750px;
@@ -65,7 +72,7 @@
             <a class="nav-link" style="padding-left: 10px;" href="{% url 'room_list' %}">방구경하기</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" style="padding-left: 10px;" href="{% url 'room_input' %}">방내놓기</a>
+            <a class="nav-link" style="padding-left: 10px;" href="{% url 'room_new' %}">방내놓기</a>
           </li>
         </ul>
       </div>

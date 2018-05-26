@@ -11,10 +11,9 @@ class RoomForm(forms.ModelForm):
     class Meta:
         model = Room
         fields = ('title',
-        'deposit_ori',
-        'rentfee_ori',
-        'deposit_new',
-        'rentfee_new',
+        'deposit',
+        'rentfee',
+        'fee_new',
         'manage_fee',
         'address',
         'date_start',
@@ -28,10 +27,9 @@ class RoomForm(forms.ModelForm):
         'room_status',)
         labels = {
         'title' : '제목',
-        'deposit_ori' : '기존 보증금',
-        'rentfee_ori' : '기존 월세',
-        'deposit_new' : '보증금',
-        'rentfee_new' : '월세',
+        'deposit' : '보증금',
+        'rentfee' : '월세',
+        'fee_new' : '지원금',
         'manage_fee' : '관리비',
         'address' : '집주소',
         'date_start' : '계약시작일',

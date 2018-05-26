@@ -1,121 +1,137 @@
 {% extends 'app/base.html' %}
+{% load staticfiles %}
 
 {% block content %}
+<h1 class="display-4"><img src="{% static 'img/room_input.png' %}" width="100%" style="margin: 0px;"></h1>
+
 <main class="container">
     <h1 style="text-align: center; margin-top:60px; margin-bottom: 50px;">Input data about your room.</h1>
     <form method="POST" class="room-form" enctype="multipart/form-data">
       <div class="form-group">
       {% csrf_token %}
       <!-- <label for="InputTitle">Title</label> -->
-      <input type="title" class="form-control" id="InputTitle" name="title" aria-describedby="titleHelp" placeholder="제목" required>
-      <small id="titleHelp" class="form-text text-muted">&nbsp;제목은 이렇게이렇게 입력하면 됩니다.</small>
+      <label for="InputFee_new">제목</label>
+      <input type="title" class="form-control" id="InputTitle" name="title" aria-describedby="titleHelp" placeholder="제목을 입력하세요." required>
+      <small id="titleHelp" class="form-text text-muted">&nbsp;</small>
 <!-- 숫자입력처리해야함 -->
       <div class="row">
         <div class="col">
-          <label for="InputDeposit_ori">기존</label>
-          <input type="deposit_ori" class="form-control" name="deposit_ori" id="InputDeposit_ori" aria-describedby="deposit_oriHelp" placeholder="기존 보증금" required>
-          <small id="deposit_oriHelp" class="form-text text-muted">&nbsp;기존의 보증금을 입력해주세요.</small>
+          <label for="InputDeposit_ori">보증금/월세</label>
+          <input type="deposit" class="form-control" name="deposit" id="InputDeposit" aria-describedby="depositHelp" placeholder="보증금" required>
+          <small id="depositHelp" class="form-text text-muted"></small>
         </div>
         <div class="col" style="padding-top: 32px;">
-          <input type="rentfee_ori" class="form-control" name="rentfee_ori" id="InputRentfee_ori" aria-describedby="rentfee_oriHelp" placeholder="기존 월세" required>
-          <small id="rentfee_oriHelp" class="form-text text-muted">&nbsp;기존의 월세를 입력해주세요.</small>
+          <input type="rentfee" class="form-control" name="rentfee" id="InputRentfee" aria-describedby="rentfeeHelp" placeholder="월세" required>
+          <small id="rentfeeHelp" class="form-text text-muted">&nbsp;</small>
         </div>
       </div>
 
       <div class="row">
         <div class="col">
-          <label for="InputDeposit_new">신규</label>
-          <input type="deposit_new" class="form-control" name="deposit_new" id="InputDeposit_new" aria-describedby="deposit_newHelp" placeholder="이어살 보증금" required>
-          <small id="deposit_newHelp" class="form-text text-muted">&nbsp;이어살 보증금을 입력해주세요.</small>
+          <label for="InputFee_new">지원금/관리비</label>
+          <input type="fee_new" class="form-control" name="fee_new" id="InputFee_new" aria-describedby="fee_newHelp" placeholder="지원금" required>
+          <small id="fee_newHelp" class="form-text text-muted">&nbsp;지원할 금액을 입력해주세요.</small>
         </div>
         <div class="col" style="padding-top: 32px;">
-          <input type="rentfee_new" class="form-control" name="rentfee_new" id="InputRentfee_new" aria-describedby="rentfee_newHelp" placeholder="이어살 월세" required>
-          <small id="rentfee_newHelp" class="form-text text-muted">&nbsp;이어살 월세를 입력해주세요.</small>
+          <input type="manage_fee" class="form-control" name="manage_fee" id="InputManage_fee" aria-describedby="manage_feeHelp" placeholder="관리비" required>
+          <small id="titleHelp" class="form-text text-muted">&nbsp;관리비는 이렇게이렇게 입력하면 됩니다.</small>
         </div>
       </div>
 
-      <input type="manage_fee" class="form-control" name="manage_fee" id="InputManage_fee" aria-describedby="manage_feeHelp" placeholder="관리비" required>
-      <small id="titleHelp" class="form-text text-muted">관리비는 이렇게이렇게 입력하면 됩니다.</small>
-
+      <label for="InputAddress">주소</label>
       <input type="address" class="form-control" name="address" id="InputAddress" aria-describedby="addressHelp" placeholder="주소" required>
       <small id="titleHelp" class="form-text text-muted">주소는 이렇게이렇게 입력하면 됩니다.</small>
 
-      <input type="date_start" class="form-control" name="date_start" id="InputDate_start" aria-describedby="date_startHelp" placeholder="시작일" required>
-      <small id="titleHelp" class="form-text text-muted">시작일은 이렇게이렇게 입력하면 됩니다.</small>
 
-      <input type="date_end" class="form-control" name="date_end" id="InputDate_end" aria-describedby="date_endHelp" placeholder="마감일" required>
-      <small id="titleHelp" class="form-text text-muted">마감일은 이렇게이렇게 입력하면 됩니다.</small>
-
-      <div class="form-group">
-        <label for="exampleFormControlSelect1">방형태</label>
-        <select class="form-control" name="room_type" id="exampleFormControlSelect1">
-          {% for room_type in room_types %}
-          <option value="{{ room_type.id }}">{{ room_type.name }}</option>
-          {% endfor %}
-        </select>
+      <div class="row">
+        <div class="col">
+          <label for="InputDate">입주가능일/계약일</label>
+          <input type="date_start" class="form-control" name="date_start" id="InputDate_start" aria-describedby="date_startHelp" placeholder="입주가능일" required>
+          <small id="titleHelp" class="form-text text-muted">입주가능한 날짜를 입력해주세요.</small>
+        </div>
+        <div class="col" style="padding-top: 32px;">
+          <input type="date_end" class="form-control" name="date_end" id="InputDate_end" aria-describedby="date_endHelp" placeholder="계약마감일" required>
+          <small id="titleHelp" class="form-text text-muted">계약마감날짜를 입력해주세요.</small>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="exampleFormControlSelect1">집주인동의</label>
-        <select class="form-control" name="room_agree" id="exampleFormControlSelect1">
-          {% for room_agree in room_agrees %}
-          <option value="{{ room_agree.id }}">{{ room_agree.agreement }}</option>
-          {% endfor %}
-        </select>
-      </div>
-      <input type="contact" class="form-control" name="contact" id="Contact" aria-describedby="date_endHelp" placeholder="마감일" required>
-      <small id="titleHelp" class="form-text text-muted">마감일은 이렇게이렇게 입력하면 됩니다.</small>
 
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">방형태</label>
+            <select class="form-control" name="room_type" id="exampleFormControlSelect1">
+              {% for room_type in room_types %}
+              <option value="{{ room_type.id }}">{{ room_type.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label for="exampleFormControlSelect2">집주인동의</label>
+            <select class="form-control" name="room_agree" id="exampleFormControlSelect2">
+              {% for room_agree in room_agrees %}
+              <option value="{{ room_agree.id }}">{{ room_agree.agreement }}</option>
+              {% endfor %}
+          </select>
+          </div>
+        </div>
+      </div>
+
+      <label for="InputContact">연락수단</label>
+      <input type="contact" class="form-control" name="contact" id="Contact" aria-describedby="contactHelp" placeholder="연락수단" required>
+      <small id="titleHelp" class="form-text text-muted">오픈카톡url, 연락처 등 연락수단을 입력해주세요.</small>
+
+
+<!-- 연결해야함 -->
+
+      <label for="InputOption">옵션</label>
 
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-        <label class="form-check-label" for="inlineCheckbox1">1</label>
+        <label class="form-check-label" for="inlineCheckbox1">에어컨</label>
       </div>
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-        <label class="form-check-label" for="inlineCheckbox2">2</label>
+        <label class="form-check-label" for="inlineCheckbox2">냉장고</label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled>
-        <label class="form-check-label" for="inlineCheckbox3">3 (disabled)</label>
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+        <label class="form-check-label" for="inlineCheckbox3">베란다</label>
       </div>
 
-        {{ form.as_p }}
-        {{ files.as_p }}
+      <div class="form-group">
+        <label for="exampleFormControlSelect3">학교</label>
+        <select class="form-control" name="university" id="exampleFormControlSelect3">
+          {% for university in universitys %}
+          <option value="{{ university.id }}">{{ university.name }}</option>
+          {% endfor %}
+      </select>
       </div>
-        <button type="submit" class="save btn btn-primary">Save</button>
+
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">기타 추가사항</label>
+        <textarea type="text" class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="exampleFormControlSelect4">계약가능여부</label>
+        <select class="form-control" name="room_status" id="exampleFormControlSelect4">
+          {% for room_status in room_statuss %}
+          <option value="{{ room_status.id }}">{{ room_status.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <label for="InputPhoto">방사진</label>
+      <div class="custom-file">
+        <input type="file" class="custom-file-input" id="validatedCustomFile" required>
+          <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+        <div class="invalid-feedback">Example invalid custom file feedback</div>
+      </div>
+
+      <button type="submit" class="save btn btn-primary">Save</button>
     </form>
 </main>
 
 {% endblock %}
-
-'deposit_ori',
-'rentfee_ori',
-'deposit_new',
-'rentfee_new',
-'manage_fee',
-'address',
-'date_start',
-'date_end',
-'room_type',
-'room_agree',
-'contact',
-'room_option',
-'university',
-'text',
-'room_status',
-<form>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-  </div>
-  <div class="form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
