@@ -15,7 +15,11 @@ def room_list(request):
 def room_detail(request, pk):
     room = get_object_or_404(Room, pk=pk)
     photos = room.photo.all()
-    return render(request, 'app/room_detail.html', {'room': room, 'photos':photos})
+    options = [option.name for option in room.room_option.all()]
+    return render(request, 'app/room_detail.html', {'room': room, 
+                                                'photos': photos,
+                                                'options': options
+                                                })
 
 def main(request):
     return render(request, 'app/main.html', {})
