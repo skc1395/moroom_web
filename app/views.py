@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from .models import Room, RoomType, RoomAgree, Option, RoomStatus,Photo
 from .forms import RoomForm, FileFieldForm
 from .get_geocode import Get_geocode
-# from . import constant
+from . import constant
 
 
 def room_list(request):
@@ -16,9 +16,14 @@ def room_detail(request, pk):
     room = get_object_or_404(Room, pk=pk)
     photos = room.photo.all()
     options = [option.name for option in room.room_option.all()]
+    lng = room.location_long
+    lat = room.location_lat
     return render(request, 'app/room_detail.html', {'room': room, 
                                                 'photos': photos,
-                                                'options': options
+                                                'options': options,
+                                                'lng': lng,
+                                                'lat': lat,
+                                                'kakao_key': constant.API_KEY
                                                 })
 
 def main(request):
@@ -42,8 +47,8 @@ def room_new(request):
         if form.is_valid():
             room = form.save(commit=False)
             room.user = user
-            # room.location_long = Get_geocode(request.POST['address'],constant.API_KEY)[0]
-            # room.location_lat = Get_geocode(request.POST['address'],constant.API_KEY)[1]
+            room.location_long = Get_geocode(request.POST['address'],constant.API_KEY)[0]
+            room.location_lat = Get_geocode(request.POST['address'],constant.API_KEY)[1]
             room.created_date = timezone.now()
             room.published_date = timezone.now()
             room.save()
