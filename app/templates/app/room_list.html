@@ -3,14 +3,15 @@
 
 {% block content %}
 <h1 class="display-4"><img src="{% static 'img/room_list.png' %}" width="100%" style="margin: 0px;"></h1>
-  <main role="main" class="container" style="margin-top: 80px;">
-    <div class="row">
+  <main role="main" style="margin-top: 80px;">
+    <div class="container-fluid content-row">
+      <div class="row">
         {% for room in rooms %}
-        <div class="col-sm-4 py-2">
-          <div class="card card-body h-80">
-            <img class="card-img-top" src="{{ room.photo.first.image.url }}" alt="Card image cap">
+          <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3" style="margin-bottom:50px;">
+            <div class="card h-80">
+            <img class="card-img-top" height="40%" src="{{ room.photo.first.image.url }}" alt="Card image cap">
             <div class="card-body">
-              <h5 class="card-title"><a href="{% url 'room_detail' pk=room.pk %}">{{ room.title }}</a></h5>
+              <h5 class="card-title" style="text-align: center;"><a href="{% url 'room_detail' pk=room.pk %}" style="color:black;">{{ room.title }}</a></h5>
               <p class="card-text" style="margin-bottom: 0px;">입주가능일: {{ room.date_start }}</p>
               <p class="card-text" style="margin-bottom: 0px;">계약만기일: {{ room.date_end }}</p>
               <p class="card-text" style="margin-bottom: 0px;">보증금/월세: {{ room.deposit }} / {{ room.rentfee }}</p>
@@ -21,7 +22,8 @@
             </div>
           </div>
         </div>
+        {% endfor %}
       </div>
-    {% endfor %}
+    </div>
   </main>
 {% endblock %}
