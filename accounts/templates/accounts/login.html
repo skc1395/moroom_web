@@ -45,7 +45,8 @@
       {% csrf_token %}
       {% if messages %}
           {% for message in messages %}
-          <div{% if message.tags == 'success' %} class="alert alert-success" role="alert" {% endif %}>{{ message }}</div>
+          <div{% if message.tags == 'success' %} class="alert alert-success" role="alert"
+          {% elif message.tags == 'warning' %} class="alert alert-warning" role="alert" {% endif %}>{{ message }}</div>
           {% endfor %}
       {% endif %}
       <label for="inputID" class="sr-only">ID</label>

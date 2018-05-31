@@ -90,7 +90,9 @@ def log_in(request):
             return redirect('main')
 
         else:
-            return HttpResponse('로그인이 실패하였습니다')
+            messages.warning(request, '아이디나 비밀번호가 틀립니다.')
+
+            return redirect('log_in')
 
     else:
         form = LoginForm()
