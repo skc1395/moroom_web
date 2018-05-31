@@ -12,16 +12,16 @@ from .forms import UserForm, ProfileForm, LoginForm, FileFieldForm
 
 
 
-def home(request):
-
-    return render(request, 'account/home.html', {})
+# def home(request):
+#
+#     return render(request, 'account/home.html', {})
 
 def signup(request):
 
 
     providers = []
     for provider in get_providers():
-        
+
     # social_app속성은 provider에는 없는 속성입니다.
         try:
             provider.social_app = SocialApp.objects.get(provider=provider.id, sites=settings.SITE_ID)
@@ -33,7 +33,7 @@ def signup(request):
         user_form = UserForm(request.POST)
         profile_form = ProfileForm(request.POST)
 
-       
+
         print(user_form.is_valid())
         print(profile_form.is_valid())
 
@@ -55,21 +55,21 @@ def signup(request):
     else:
         user_form = UserForm()
         profile_form = ProfileForm()
-       
+
 
     return render(request, 'accounts/signup.html', {
                         'user_form': user_form,
                         'profile_form': profile_form,
                         'providers': providers
-                      
+
                 })
 
 
 def log_in(request):
-    
+
     providers = []
     for provider in get_providers():
-        
+
 # social_app속성은 provider에는 없는 속성입니다.
         try:
             provider.social_app = SocialApp.objects.get(provider=provider.id, sites=settings.SITE_ID)
@@ -101,8 +101,8 @@ def log_in(request):
             })
 
 # def log_in(request):
-    
-    
+
+
 
 #     return auth_login(request,
 #         authentication_form=LoginForm,
@@ -114,6 +114,10 @@ def log_out(request):
 
     return redirect('main')
 
+
+def profile(request):
+
+    return redirect('main')
 
 # def check_id(request):
 #     if request.method == 'POST':
