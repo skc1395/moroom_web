@@ -21,6 +21,7 @@
           color: #fff;
          background-color: #1ec800;
           border-color: #34b31e;
+          width: 300;
       }
 
       .btn-kakao {
@@ -29,7 +30,7 @@
           border-color: #ffde00;
       }
 
-      
+
       </style>
   </head>
 
@@ -40,7 +41,7 @@
       <div class="container">
         <a href="{% url 'main' %}"><img class="mb-4" src="{% static 'img/logo_1.png' %}" height="120px" align="middle"></a>
       </div>
-      <h1 class="h3 mb-3 font-weight-normal" style="font-size:30px">Please login</h1>
+      <!-- <h1 class="h3 mb-3 font-weight-normal" style="font-size:30px">Please login</h1> -->
       {% csrf_token %}
       {% if messages %}
           {% for message in messages %}
@@ -58,19 +59,17 @@
       </div> -->
       <button class="btn btn-lg btn-primary btn-block" type="submit" style="margin-bottom: 10px">로그인</button>
       <a href="{% url 'signup' %}">회원가입</a>
-      <div class="container">
+      <div class="container" style="margin-top: 10px;">
       {% for provider in  providers %}
-        
-        
+
           <row>
-            <div class="col-sm"></div>
-            <div class="col-sm">   
+            <div class="col-sm">
               {% if provider.social_app %}
 
               <a {% if provider.name == 'Kakao' %}class="btn btn-lg btn-primary btn-block btn-kakao" {% else %} class="btn btn-lg btn-primary btn-block btn-naver"{% endif %}href="{% provider_login_url provider.id %}">
-              {{ provider.name }}
-              </a> 
-                
+              {{ provider.name }}로 시작하기
+              </a>
+
               {% else %}
                 <a>
                   Provider {{ provider.name }} 설정이 필요합니다.
@@ -79,15 +78,15 @@
           </div>
             <div class="col-sm"></div>
        </row>
-      
+
       {% endfor %}
       </div>
 
     </form>
-    
-    
 
 
-    
+
+
+
   </body>
 </html>
