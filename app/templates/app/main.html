@@ -3,8 +3,8 @@
 
 
 {% block content %}
-<main role="main">
-  <div id="top" class="container-fluid" style="background-color: #ffffff;padding-bottom: 140px;padding-top: 240px;">
+<main role="main" style="justify-content: center;">
+  <div id="top" class="container" style="background-color: #ffffff;padding-bottom: 140px;padding-top: 240px;">
     <div class="container" style="display: flex; justify-content: center;">
       <div class="row">
         <h1 class="display-4"><img src="{% static 'img/main_1.png' %}" width="100%"></h1>
@@ -18,16 +18,22 @@
   <!-- Marketing messaging and featurettes
   ================================================== -->
   <!-- Wrap the rest of the page in another container to center all the content. -->
-<div id="home1" style="background-color:#353535;">
+<div class="row" id="home1" style="background-color:#353535;">
   <div class="container" style="display: flex; justify-content: center;">
     <img src="{% static 'img/home1.JPG' %}">
   </div>
+</div>
+<div class="row" id="home1" style="background-color:#353535;">
   <div class="container" style="display: flex; justify-content: center;">
     <img src="{% static 'img/home2.JPG'%}">
   </div>
+</div>
+<div class="row" id="home1" style="background-color:#353535;">
   <div class="container" style="display: flex; justify-content: center;">
     <img src="{% static 'img/home3.JPG'%}">
   </div>
+</div>
+<div class="row" id="home1" style="background-color:#353535;">
   <div class="container" style="display: flex; justify-content: center;">
     <img src="{% static 'img/home4.JPG'%}">
   </div>

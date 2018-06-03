@@ -43,7 +43,13 @@
         width: 940px;
       }
     }
-
+    /* 폰트 */
+    @font-face{
+    font-family:ng;
+    src:url({% static 'fonts/NanumGothic.eot' %});
+    src:local(※), url({% static 'fonts/NanumGothic.woff' %}) format(‘woff’);
+    }
+    body{font-family:나눔고딕, NanumGothic, ng}
 
     </style>
   </head>
