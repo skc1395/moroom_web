@@ -4,6 +4,11 @@
 
 {% block content %}
 <main role="main" style="justify-content: center;">
+  {% if messages %}
+      {% for message in messages %}
+      <div style="margin-top:15px;"{% if message.tags == 'success' %} class="alert alert-success" role="alert"{% endif %}>{{ message }}</div>
+      {% endfor %}
+  {% endif %}
   <div id="top" class="container" style="background-color: #ffffff;padding-bottom: 140px;padding-top: 240px;">
     <div class="container" style="display: flex; justify-content: center;">
       <div class="row">
@@ -14,7 +19,6 @@
       <a href="#home1"><img src="{% static 'img/arrow.png' %}" height="30"></a>
     </div>
   </div>
-
   <!-- Marketing messaging and featurettes
   ================================================== -->
   <!-- Wrap the rest of the page in another container to center all the content. -->

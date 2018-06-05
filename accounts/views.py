@@ -33,7 +33,6 @@ def signup(request):
         user_form = UserForm(request.POST)
         profile_form = ProfileForm(request.POST)
 
-
         print(user_form.is_valid())
         print(profile_form.is_valid())
 
@@ -53,6 +52,7 @@ def signup(request):
 
 
     else:
+        messages.warning(request, '회원정보가 올바르지 않습니다.')
         user_form = UserForm()
         profile_form = ProfileForm()
 
@@ -87,6 +87,7 @@ def log_in(request):
 
         if user is not None:
             login(request, user)
+            messages.success(request, '로그인되었습니다.')
             return redirect('main')
 
         else:
@@ -113,6 +114,7 @@ def log_in(request):
 
 def log_out(request):
     logout(request)
+    messages.success(request, '로그아웃되었습니다.')
 
     return redirect('main')
 
