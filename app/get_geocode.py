@@ -1,6 +1,6 @@
 import requests
 
-kex = "a661789ae59ebe02ffc541fcf37ae534"
+
 def Get_geocode(address, key):
  """
  사용자가 주소 입력시, DB에 저장하기 전 view단에서 damm map api를 이용해서
