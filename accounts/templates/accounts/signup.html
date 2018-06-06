@@ -43,7 +43,7 @@
         {% for message in messages %}
         <div{% if message.tags == 'warning' %} class="alert alert-warning" role="alert" {% endif %}>{{ message }}</div>
         {% endfor %}
-    {% endif %}        
+    {% endif %}
     <p style="margin: 0px;">
       <label for="inputID" class="sr-only">ID</label>
       <input type="username" id="inputID" class="form-control" placeholder="아이디" name="username" required autofocus>

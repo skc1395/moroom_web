@@ -1,6 +1,5 @@
 import requests
 
-
 def Get_geocode(address, key):
     """
     사용자가 주소 입력시, DB에 저장하기 전 view단에서 damm map api를 이용해서
@@ -8,19 +7,36 @@ def Get_geocode(address, key):
 
     만약 주소값에 오류가 있다면 -> api 요청 결과, 빈 리스트이면(IndexError)
     lng와 lat 값으로 0으로 주고, 사용자가 입력한 문(gate)의 위도와 경도값을 저장한다.
+<<<<<<< HEAD
     """
+=======
+
+    """
+
+>>>>>>> f9c46653b7b4bde3a9ccfaef1fd8fb1b3a470b51
     url = 'https://dapi.kakao.com/v2/local/search/address.json'
     headers = {'Authorization': 'KakaoAK {}'.format(key)}
     data = {'query': address}
     req = requests.get(url, headers=headers, data=data)
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> f9c46653b7b4bde3a9ccfaef1fd8fb1b3a470b51
     response = req.json()
-    
+    lng = response['documents'][0]['address']['y']
+    lat = response['documents'][0]['address']['x']
+
+    return (lng,lat)
+
+
     try:
         lng = response['documents'][0]['address']['y']
         lat = response['documents'][0]['address']['x']
 
+# print(Get_geocode('대구광역시 북구 복현동 597-33', kex))
     except IndexError:
         lng = 0
         lat = 0
-   
-    return (lng,lat)
+
+        return (lng,lat)
