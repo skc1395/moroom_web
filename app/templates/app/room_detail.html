@@ -85,153 +85,300 @@
           </div>
           </div>
           <!-- /.row -->
+          <div class="d-none d-md-block">
           <hr>
-          <div class="row">
-            <div class="col-lg-12">
-            <h3>옵션</h3>
-             <div class="row">
+            <div class="row">
+              <div class="col-lg-12">
+              <h3>옵션</h3>
+               <div class="row">
 
-
-
-
-
-               {% if '에어컨' in options %}
-                    <div class="col-md-2">
-                      <img src="{% static 'img/option/air_conditioner.png' %}"  class="mw-100" alt="">
-                    </div>
-               {% else %}
+                 {% if '에어컨' in options %}
                       <div class="col-md-2">
-                        <img src="{% static 'img/option/air_conditioner.png' %}" class="mw-100  img-gray" alt="">
+                        <img src="{% static 'img/option/air_conditioner.png' %}"  class="mw-100" alt="">
                       </div>
-               {% endif %}
+                 {% else %}
+                        <div class="col-md-2">
+                          <img src="{% static 'img/option/air_conditioner.png' %}" class="mw-100  img-gray" alt="">
+                        </div>
+                 {% endif %}
 
-               {% if '인터넷' in options %}
-                    <div class="col-md-2">
-                      <img src="{% static 'img/option/wifi.png' %}"  class="mw-100" alt="">
-                    </div>
-               {% else %}
-                    <div class="col-md-2">
-                      <img src="{% static 'img/option/wifi.png' %}"  class="mw-100 img-gray" alt="">
-                    </div>
-               {% endif %}
+                 {% if '인터넷' in options %}
+                      <div class="col-md-2">
+                        <img src="{% static 'img/option/wifi.png' %}"  class="mw-100" alt="">
+                      </div>
+                 {% else %}
+                      <div class="col-md-2">
+                        <img src="{% static 'img/option/wifi.png' %}"  class="mw-100 img-gray" alt="">
+                      </div>
+                 {% endif %}
 
-               {% if '전자레인지' in options %}
-                    <div class="col-md-2">
-                      <img src="{% static 'img/option/microwave.png' %}"  class="mw-100" alt="">
-                    </div>
-               {% else %}
+                 {% if '전자레인지' in options %}
                       <div class="col-md-2">
-                      <img src="{% static 'img/option/microwave.png' %}"  class="mw-100 img-gray" alt="">
-                    </div>
-               {% endif %}
+                        <img src="{% static 'img/option/microwave.png' %}"  class="mw-100" alt="">
+                      </div>
+                 {% else %}
+                        <div class="col-md-2">
+                        <img src="{% static 'img/option/microwave.png' %}"  class="mw-100 img-gray" alt="">
+                      </div>
+                 {% endif %}
 
-               {% if '냉장고' in options %}
-                      <div class="col-md-2">
-                      <img src="{% static 'img/option/fridge.png' %}"  class="mw-100" alt="">
-                    </div>
-               {% else %}
-                      <div class="col-md-2">
-                      <img src="{% static 'img/option/fridge.png' %}"  class="mw-100 img-gray" alt="">
-                    </div>
-               {% endif %}
+                 {% if '냉장고' in options %}
+                        <div class="col-md-2">
+                        <img src="{% static 'img/option/fridge.png' %}"  class="mw-100" alt="">
+                      </div>
+                 {% else %}
+                        <div class="col-md-2">
+                        <img src="{% static 'img/option/fridge.png' %}"  class="mw-100 img-gray" alt="">
+                      </div>
+                 {% endif %}
 
-               {% if 'TV' in options %}
-                      <div class="col-md-2">
-                      <img src="{% static 'img/option/tv.png' %}"  class="mw-100" alt="">
-                    </div>
-               {% else %}
-                       <div class="col-md-2">
-                      <img src="{% static 'img/option/tv.png' %}"  class="mw-100 img-gray" alt="">
-                    </div>
-               {% endif %}
+                 {% if 'TV' in options %}
+                        <div class="col-md-2">
+                        <img src="{% static 'img/option/tv.png' %}"  class="mw-100" alt="">
+                      </div>
+                 {% else %}
+                         <div class="col-md-2">
+                        <img src="{% static 'img/option/tv.png' %}"  class="mw-100 img-gray" alt="">
+                      </div>
+                 {% endif %}
 
-               {% if '옷장' in options %}
-                      <div class="col-md-2">
-                      <img src="{% static 'img/option/closet.png' %}"  class="mw-100" alt="">
-                    </div>
-               {% else %}
-                       <div class="col-md-2">
-                      <img src="{% static 'img/option/closet.png' %}"  class="mw-100 img-gray" alt="">
-                    </div>
-               {% endif %}
+                 {% if '옷장' in options %}
+                        <div class="col-md-2">
+                        <img src="{% static 'img/option/closet.png' %}"  class="mw-100" alt="">
+                      </div>
+                 {% else %}
+                         <div class="col-md-2">
+                        <img src="{% static 'img/option/closet.png' %}"  class="mw-100 img-gray" alt="">
+                      </div>
+                 {% endif %}
 
-               {% if '침대' in options %}
-                      <div class="col-md-2">
-                      <img src="{% static 'img/option/bed.png' %}"  class="mw-100" alt="">
-                    </div>
-               {% else %}
-                      <div class="col-md-2">
-                      <img src="{% static 'img/option/bed.png' %}"  class="mw-100 img-gray" alt="">
-                    </div>
-               {% endif %}
+                 {% if '침대' in options %}
+                        <div class="col-md-2">
+                        <img src="{% static 'img/option/bed.png' %}"  class="mw-100" alt="">
+                      </div>
+                 {% else %}
+                        <div class="col-md-2">
+                        <img src="{% static 'img/option/bed.png' %}"  class="mw-100 img-gray" alt="">
+                      </div>
+                 {% endif %}
 
-               {% if '책상' in options %}
-                      <div class="col-md-2">
-                      <img src="{% static 'img/option/desk.png' %}"  class="mw-100" alt="">
-                    </div>
-               {% else %}
-                      <div class="col-md-2">
-                      <img src="{% static 'img/option/desk.png' %}"  class="mw-100 img-gray" alt="">
-                    </div>
-               {% endif %}
+                 {% if '책상' in options %}
+                        <div class="col-md-2">
+                        <img src="{% static 'img/option/desk.png' %}"  class="mw-100" alt="">
+                      </div>
+                 {% else %}
+                        <div class="col-md-2">
+                        <img src="{% static 'img/option/desk.png' %}"  class="mw-100 img-gray" alt="">
+                      </div>
+                 {% endif %}
 
-               {% if '가스레인지' in options %}
-                      <div class="col-md-2">
-                      <img src="{% static 'img/option/gas_stove.png' %}"  class="mw-100" alt="">
-                    </div>
-               {% else %}
-                       <div class="col-md-2">
-                      <img src="{% static 'img/option/gas_stove.png' %}"  class="mw-100 img-gray" alt="">
-                    </div>
-               {% endif %}
+                 {% if '가스레인지' in options %}
+                        <div class="col-md-2">
+                        <img src="{% static 'img/option/gas_stove.png' %}"  class="mw-100" alt="">
+                      </div>
+                 {% else %}
+                         <div class="col-md-2">
+                        <img src="{% static 'img/option/gas_stove.png' %}"  class="mw-100 img-gray" alt="">
+                      </div>
+                 {% endif %}
 
 
-               {% if '세탁기' in options %}
-                      <div class="col-md-2">
-                      <img src="{% static 'img/option/washer.png' %}"  class="mw-100" alt="">
-                    </div>
-               {% else %}
-                      <div class="col-md-2">
-                      <img src="{% static 'img/option/washer.png' %}"  class="mw-100 img-gray" alt="">
-                    </div>
-               {% endif %}
+                 {% if '세탁기' in options %}
+                        <div class="col-md-2">
+                        <img src="{% static 'img/option/washer.png' %}"  class="mw-100" alt="">
+                      </div>
+                 {% else %}
+                        <div class="col-md-2">
+                        <img src="{% static 'img/option/washer.png' %}"  class="mw-100 img-gray" alt="">
+                      </div>
+                 {% endif %}
 
-               {% if '도어락' in options %}
-                      <div class="col-md-2">
-                      <img src="{% static 'img/option/door_lock.png' %}"  class="mw-100" alt="">
-                    </div>
-               {% else %}
-                      <div class="col-md-2">
-                      <img src="{% static 'img/option/door_lock.png' %}"  class="mw-100 img-gray" alt="">
-                    </div>
-               {% endif %}
+                 {% if '도어락' in options %}
+                        <div class="col-md-2">
+                        <img src="{% static 'img/option/door_lock.png' %}"  class="mw-100" alt="">
+                      </div>
+                 {% else %}
+                        <div class="col-md-2">
+                        <img src="{% static 'img/option/door_lock.png' %}"  class="mw-100 img-gray" alt="">
+                      </div>
+                 {% endif %}
 
-               {% if '베란다' in options %}
-                      <div class="col-md-2">
-                      <img src="{% static 'img/option/veranda.png' %}"  class="mw-100" alt="">
-                    </div>
-               {% else %}
-                      <div class="col-md-2">
-                      <img src="{% static 'img/option/veranda.png' %}"  class="mw-100 img-gray" alt="">
-                    </div>
-               {% endif %}
+                 {% if '베란다' in options %}
+                        <div class="col-md-2">
+                        <img src="{% static 'img/option/veranda.png' %}"  class="mw-100" alt="">
+                      </div>
+                 {% else %}
+                        <div class="col-md-2">
+                        <img src="{% static 'img/option/veranda.png' %}"  class="mw-100 img-gray" alt="">
+                      </div>
+                 {% endif %}
 
-               {% if '애완동물' in options %}
-                      <div class="col-md-2">
-                      <img src="{% static 'img/option/pet.png' %}"  class="mw-100" alt="">
-                    </div>
-               {% else %}
-                      <div class="col-md-2">
-                      <img src="{% static 'img/option/pet.png' %}"  class="mw-100 img-gray" alt="">
-                    </div>
-               {% endif %}
+                 {% if '애완동물' in options %}
+                        <div class="col-md-2">
+                        <img src="{% static 'img/option/pet.png' %}"  class="mw-100" alt="">
+                      </div>
+                 {% else %}
+                        <div class="col-md-2">
+                        <img src="{% static 'img/option/pet.png' %}"  class="mw-100 img-gray" alt="">
+                      </div>
+                 {% endif %}
+               </div>
 
 
 
              </div>
             </div>
+
+          </hr>
           </div>
+
+          <div class="d-md-none">
           <hr>
+            <div class="row">
+              <div class="col-lg-12">
+              <h3>옵션</h3>
+               <div class="row">
+
+                 {% if '에어컨' in options %}
+                      <div class="col-sm-3">
+                        <img src="{% static 'img/option/air_conditioner.png' %}"  class="mw-100" alt="">
+                      </div>
+                 {% else %}
+                        <div class="col-sm-3">
+                          <img src="{% static 'img/option/air_conditioner.png' %}" class="mw-100  img-gray" alt="">
+                        </div>
+                 {% endif %}
+
+                 {% if '인터넷' in options %}
+                      <div class="col-sm-3">
+                        <img src="{% static 'img/option/wifi.png' %}"  class="mw-100" alt="">
+                      </div>
+                 {% else %}
+                      <div class="col-sm-3">
+                        <img src="{% static 'img/option/wifi.png' %}"  class="mw-100 img-gray" alt="">
+                      </div>
+                 {% endif %}
+
+                 {% if '전자레인지' in options %}
+                      <div class="col-sm-3">
+                        <img src="{% static 'img/option/microwave.png' %}"  class="mw-100" alt="">
+                      </div>
+                 {% else %}
+                        <div class="col-sm-3">
+                        <img src="{% static 'img/option/microwave.png' %}"  class="mw-100 img-gray" alt="">
+                      </div>
+                 {% endif %}
+
+                 {% if '냉장고' in options %}
+                        <div class="col-sm-3">
+                        <img src="{% static 'img/option/fridge.png' %}"  class="mw-100" alt="">
+                      </div>
+                 {% else %}
+                        <div class="col-sm-3">
+                        <img src="{% static 'img/option/fridge.png' %}"  class="mw-100 img-gray" alt="">
+                      </div>
+                 {% endif %}
+
+                 {% if 'TV' in options %}
+                        <div class="col-sm-3">
+                        <img src="{% static 'img/option/tv.png' %}"  class="mw-100" alt="">
+                      </div>
+                 {% else %}
+                         <div class="col-sm-3">
+                        <img src="{% static 'img/option/tv.png' %}"  class="mw-100 img-gray" alt="">
+                      </div>
+                 {% endif %}
+
+                 {% if '옷장' in options %}
+                        <div class="col-sm-3">
+                        <img src="{% static 'img/option/closet.png' %}"  class="mw-100" alt="">
+                      </div>
+                 {% else %}
+                         <div class="col-sm-3">
+                        <img src="{% static 'img/option/closet.png' %}"  class="mw-100 img-gray" alt="">
+                      </div>
+                 {% endif %}
+
+                 {% if '침대' in options %}
+                        <div class="col-sm-3">
+                        <img src="{% static 'img/option/bed.png' %}"  class="mw-100" alt="">
+                      </div>
+                 {% else %}
+                        <div class="col-sm-3">
+                        <img src="{% static 'img/option/bed.png' %}"  class="mw-100 img-gray" alt="">
+                      </div>
+                 {% endif %}
+
+                 {% if '책상' in options %}
+                        <div class="col-sm-3">
+                        <img src="{% static 'img/option/desk.png' %}"  class="mw-100" alt="">
+                      </div>
+                 {% else %}
+                        <div class="col-sm-3">
+                        <img src="{% static 'img/option/desk.png' %}"  class="mw-100 img-gray" alt="">
+                      </div>
+                 {% endif %}
+
+                 {% if '가스레인지' in options %}
+                        <div class="col-sm-3">
+                        <img src="{% static 'img/option/gas_stove.png' %}"  class="mw-100" alt="">
+                      </div>
+                 {% else %}
+                         <div class="col-sm-3">
+                        <img src="{% static 'img/option/gas_stove.png' %}"  class="mw-100 img-gray" alt="">
+                      </div>
+                 {% endif %}
+
+                 {% if '세탁기' in options %}
+                        <div class="col-sm-3">
+                        <img src="{% static 'img/option/washer.png' %}"  class="mw-100" alt="">
+                      </div>
+                 {% else %}
+                        <div class="col-sm-3">
+                        <img src="{% static 'img/option/washer.png' %}"  class="mw-100 img-gray" alt="">
+                      </div>
+                 {% endif %}
+
+                 {% if '도어락' in options %}
+                        <div class="col-sm-3">
+                        <img src="{% static 'img/option/door_lock.png' %}"  class="mw-100" alt="">
+                      </div>
+                 {% else %}
+                        <div class="col-sm-3">
+                        <img src="{% static 'img/option/door_lock.png' %}"  class="mw-100 img-gray" alt="">
+                      </div>
+                 {% endif %}
+
+                 {% if '베란다' in options %}
+                        <div class="col-sm-3">
+                        <img src="{% static 'img/option/veranda.png' %}"  class="mw-100" alt="">
+                      </div>
+                 {% else %}
+                        <div class="col-sm-3">
+                        <img src="{% static 'img/option/veranda.png' %}"  class="mw-100 img-gray" alt="">
+                      </div>
+                 {% endif %}
+
+                 {% if '애완동물' in options %}
+                        <div class="col-sm-3">
+                        <img src="{% static 'img/option/pet.png' %}"  class="mw-100" alt="">
+                      </div>
+                 {% else %}
+                        <div class="col-sm-3">
+                        <img src="{% static 'img/option/pet.png' %}"  class="mw-100 img-gray" alt="">
+                      </div>
+                 {% endif %}
+               </div>
+
+
+
+             </div>
+            </div>
+
+          </hr>
+          </div>
+
+
           <div class="row">
             <div class="col-lg-12">
             <h3>상세설명</h3>
