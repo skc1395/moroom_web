@@ -47,22 +47,19 @@ def signup(request):
             profile.save()
 
             messages.success(request, '회원가입이 완료되었습니다.')
-
             return redirect('log_in')
 
-
     else:
-        messages.warning(request, '회원정보가 올바르지 않습니다.')
+        messages.warning(request, '회원정보가 올바르지않습니다.')
         user_form = UserForm()
         profile_form = ProfileForm()
-
 
     return render(request, 'accounts/signup.html', {
                         'user_form': user_form,
                         'profile_form': profile_form,
                         'providers': providers
-
                 })
+
 
 
 def log_in(request):

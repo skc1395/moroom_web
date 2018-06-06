@@ -18,7 +18,7 @@
 
         <div class="col-lg-1"></div>
         <div class="col-lg-10">
-          <h1>{{ room.title }}</h1>
+          <h1 class="room-title">{{ room.title }}</h1>
 
          <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 
@@ -62,10 +62,10 @@
 
                     </tr>
                     <tr>
-                      <td>계약기간</td>
-                      <td>???</td>
                       <td>입주가능일</td>
-                      <td>???</td>
+                      <td>{{ room.date_start }}</td>
+                      <td>계약마감일</td>
+                      <td>{{ room.date_end }}</td>
 
                     </tr>
                     <tr>
