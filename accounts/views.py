@@ -47,6 +47,7 @@ def signup(request):
             profile.save()
 
             messages.success(request, '회원가입이 완료되었습니다.')
+
             return redirect('log_in')
 
     else:
