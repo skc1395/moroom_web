@@ -51,7 +51,7 @@ def signup(request):
             return redirect('log_in')
 
     else:
-        messages.warning(request, '회원정보가 올바르지않습니다.')
+        # messages.warning(request, '회원정보가 올바르지않습니다.')
         user_form = UserForm()
         profile_form = ProfileForm()
 
