@@ -20,13 +20,25 @@ def room_detail(request, university, pk):
     room = get_object_or_404(Room, pk=pk)
     photos = room.photo.all()
     options = [option.name for option in room.room_option.all()]
-    lng = room.location_long
-    lat = room.location_lat
+    university_lng = room.university.location_long
+    university_lat = room.university.location_lat
+    
+    if room.location_long == '0':
+        lng = room.door.location_long
+        lat = room.door.location_lat
+        print(lng, lat)    
+    else:
+        lng = room.location_long
+        lat = room.location_lat
+        print(lng, lat)
+        
     return render(request, 'app/room_detail.html', {'room': room, 
                                                 'photos': photos,
                                                 'options': options,
                                                 'lng': lng,
                                                 'lat': lat,
+                                                'university_lng': university_lng,
+                                                'university_lat': university_lat, 
                                                 'kakao_key': constant.API_KEY
                                                 })
 

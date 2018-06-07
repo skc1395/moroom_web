@@ -33,9 +33,6 @@ def signup(request):
         user_form = UserForm(request.POST)
         profile_form = ProfileForm(request.POST)
 
-        print(user_form.is_valid())
-        print(profile_form.is_valid())
-
         if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save(commit=False)
             user.set_password(user_form.cleaned_data['password'])
