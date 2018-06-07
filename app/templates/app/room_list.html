@@ -6,19 +6,24 @@
   <main role="main" style="margin-top: 80px;">
     <div class="container-fluid content-row">
       <div class="row">
+        {% for university in universitys %}
+          <a href="{% url 'room_list' university=university.name_eng %}"><button type="button" class="btn btn-dark">{{ university.name_kor }}</button></a>
+        {% endfor %}
+      </div>
+      <div class="row">
         {% for room in rooms %}
           <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3" style="margin-bottom:50px;">
             <div class="card h-80">
             <img class="card-img-top" height="35%" src="{{ room.photo.first.image.url }}" alt="Card image cap">
             <div class="card-body">
-              <h5 class="card-title" style="text-align: center; font-weight:bold;"><a href="{% url 'room_detail' pk=room.pk %}" style="color:#333333;">{{ room.title }}</a></h5>
+              <h5 class="card-title" style="text-align: center; font-weight:bold;"><a href="{% url 'room_detail' university=room.university.name_eng pk=room.pk %}" style="color:#333333;">[{{ room.door.name }}] {{ room.title }}</a></h5>
               <p class="card-text" style="margin-bottom: 0px;">입주가능일: {{ room.date_start }}</p>
               <p class="card-text" style="margin-bottom: 0px;">계약만기일: {{ room.date_end }}</p>
               <p class="card-text" style="margin-bottom: 0px;">보증금/월세: {{ room.deposit }} / {{ room.rentfee }}</p>
               <p class="card-text">지원사항: {{ room.fee_new }}</p>
             </div>
             <div class="card-footer" align="middle">
-              <a href="{% url 'room_detail' pk=room.pk %}" class="btn btn-secondary">자세히 보기</a>
+              <a href="{% url 'room_detail' university=room.university.name_eng pk=room.pk %}" class="btn btn-secondary">자세히 보기</a>
             </div>
           </div>
         </div>

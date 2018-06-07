@@ -2,17 +2,21 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .models import Room, RoomType, RoomAgree, Option, RoomStatus,Photo
+from .models import Room, RoomType, RoomAgree, Option, RoomStatus, Photo, University
 from .forms import RoomForm, FileFieldForm
 from .get_geocode import Get_geocode
 from . import constant
 
 
-def room_list(request):
-    rooms = Room.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-    return render(request, 'app/room_list.html', {'rooms':rooms})
+def room_list(request, university):
+    rooms = Room.objects.filter(published_date__lte=timezone.now(), university__name_eng=university).order_by('published_date')
+    universitys = University.objects.all()
+    
+    return render(request, 'app/room_list.html', {'rooms': rooms, 
+                                                  'universitys': universitys 
+                                                    })
 
-def room_detail(request, pk):
+def room_detail(request, university, pk):
     room = get_object_or_404(Room, pk=pk)
     photos = room.photo.all()
     options = [option.name for option in room.room_option.all()]
@@ -29,12 +33,8 @@ def room_detail(request, pk):
 def main(request):
     return render(request, 'app/main.html', {})
 
-
-def input_data(request):
-    return render(request, 'app/input_data.html', {})
-
 @login_required(login_url='log_in')
-def room_new(request):
+def room_new(request, university):
     room_types = RoomType.objects.all()
     room_agrees = RoomAgree.objects.all()
 
@@ -67,7 +67,7 @@ def room_new(request):
     })
 
 
-def room_edit(request, pk):
+def room_edit(request, university, pk):
     room = get_object_or_404(Room, pk=pk)
     if request.method == "POST":
             room = form.save(commit=False)
