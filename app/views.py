@@ -13,7 +13,8 @@ def room_list(request, university):
     universitys = University.objects.all()
     
     return render(request, 'app/room_list.html', {'rooms': rooms, 
-                                                  'universitys': universitys 
+                                                  'universitys': universitys,
+                                                  'university_name': university 
                                                     })
 
 def room_detail(request, university, pk):
@@ -31,7 +32,7 @@ def room_detail(request, university, pk):
         lng = room.location_long
         lat = room.location_lat
         print(lng, lat)
-        
+
     return render(request, 'app/room_detail.html', {'room': room, 
                                                 'photos': photos,
                                                 'options': options,
