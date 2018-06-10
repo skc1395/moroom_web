@@ -16,8 +16,6 @@ def Get_geocode(address, key):
     data = {'query': address}
     req = requests.get(url, headers=headers, data=data)
     response = req.json()
-    lng = response['documents'][0]['address']['y']
-    lat = response['documents'][0]['address']['x']
 
     try:
         lng = response['documents'][0]['address']['y']
@@ -28,3 +26,7 @@ def Get_geocode(address, key):
         lat = 0
 
     return (lng,lat)
+
+
+
+    
