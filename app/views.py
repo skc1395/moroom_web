@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .models import Room, RoomType, RoomAgree, Option, RoomStatus, Photo, University
+from .models import Room, RoomType, RoomAgree, Option, RoomStatus, Photo, University, Door
 from .forms import RoomForm, FileFieldForm
 from .get_geocode import Get_geocode
 from . import constant
@@ -50,25 +50,36 @@ def main(request):
 def room_new(request, university):
     room_types = RoomType.objects.all()
     room_agrees = RoomAgree.objects.all()
+    room_status = RoomStatus.objects.all()
+    room_options = Option.objects.all()
+    university_obj = University.objects.get(name_eng=university)
+    gates = Door.objects.filter(university__name_eng=university) # 학교와 연결된 문 가져오기
 
+    
     if request.method == "POST":
         user = User.objects.get(username=request.user.username)
         form = RoomForm(request.POST)
+        print(form)
+        print(request.FILES)
         files = FileFieldForm(request.FILES)
         file_list = request.FILES.getlist('file_field')
 
         if form.is_valid():
+            print(form.cleaned_data)
             room = form.save(commit=False)
             room.user = user
             room.location_long = Get_geocode(request.POST['address'],constant.API_KEY)[0]
             room.location_lat = Get_geocode(request.POST['address'],constant.API_KEY)[1]
             room.created_date = timezone.now()
             room.published_date = timezone.now()
+            room.university = university_obj
             room.save()
+            for option in form.cleaned_data['room_option']: # 방 옵션을 저장 many-to-many라서 room 객체 사전에 저장 후 처리.
+                room.room_option.add(option)
             room_obj= Room.objects.get(id=room.pk)
             for f in file_list:
                 Photo.objects.create(image=f, rooms=room_obj)
-            return redirect('room_detail', pk=room.pk)
+            return redirect('room_detail', university=university, pk=room.pk)
     else:
         form = RoomForm()
         files = FileFieldForm()
@@ -77,6 +88,9 @@ def room_new(request, university):
     'files' : files,
     'room_types' : room_types,
     'room_agrees' : room_agrees,
+    'room_status': room_status,
+    'room_options': room_options,
+    'gates': gates
     })
 
 

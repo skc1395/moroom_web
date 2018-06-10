@@ -22,7 +22,7 @@ class RoomForm(forms.ModelForm):
         'room_agree',
         'contact',
         'room_option',
-        'university',
+        'door',
         'text',
         'room_status',)
         labels = {
@@ -38,7 +38,7 @@ class RoomForm(forms.ModelForm):
         'room_agree' : '집주인 동의',
         'contact' : '연락수단',
         'room_option' : '옵션',
-        'university' : '학교',
+        'door': '문',
         'text' : '기타 추가사항',
         'room_status' : '계약가능여부',
         }

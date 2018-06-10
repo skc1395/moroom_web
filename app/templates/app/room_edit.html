@@ -86,51 +86,55 @@
 <!-- 연결해야함 -->
 
       <label for="InputOption">옵션</label>
-
+        {% for option in room_options %}
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-        <label class="form-check-label" for="inlineCheckbox1">에어컨</label>
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="room_option" value="{{ option.id }}">
+        <label class="form-check-label" for="inlineCheckbox1">{{ option.name }}</label>
       </div>
-      <div class="form-check form-check-inline">
+      {% endfor %}
+      {% comment %}<div class="form-check form-check-inline">
         <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
         <label class="form-check-label" for="inlineCheckbox2">냉장고</label>
       </div>
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
         <label class="form-check-label" for="inlineCheckbox3">베란다</label>
-      </div>
+      </div>{% endcomment %}
 
       <div class="form-group">
-        <label for="exampleFormControlSelect3">학교</label>
-        <select class="form-control" name="university" id="exampleFormControlSelect3">
-          {% for university in universitys %}
-          <option value="{{ university.id }}">{{ university.name }}</option>
+        <label for="exampleFormControlSelect3">문(Gate)</label>
+        <select class="form-control" name="door" id="exampleFormControlSelect3">
+          {% for gate in gates %}
+          <option value="{{ gate.id }}">{{ gate.name }}</option>
           {% endfor %}
       </select>
       </div>
 
       <div class="form-group">
         <label for="exampleFormControlTextarea1">기타 추가사항</label>
-        <textarea type="text" class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+        <textarea type="text" class="form-control" name="text" id="exampleFormControlTextarea1" rows="5"></textarea>
       </div>
 
       <div class="form-group">
         <label for="exampleFormControlSelect4">계약가능여부</label>
         <select class="form-control" name="room_status" id="exampleFormControlSelect4">
-          {% for room_status in room_statuss %}
-          <option value="{{ room_status.id }}">{{ room_status.name }}</option>
+          {% for status in room_status %}
+          <option value="{{ status.id }}">{{ status.status }}</option>
           {% endfor %}
         </select>
       </div>
 
       <label for="InputPhoto">방사진</label>
-      <div class="custom-file">
-        <input type="file" class="custom-file-input" id="validatedCustomFile" multiple>
+       <input type="file" name="file_field" multiple>
+      {% comment %}<div class="custom-file">
+        <input type="file" class="custom-file-input" name="file_field" id="validatedCustomFile" multiple>
           <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
-        <div class="invalid-feedback">Example invalid custom file feedback</div>
-      </div>
+      </div>{% endcomment %}
 
-      <button type="submit" class="save btn btn-primary">Save</button>
+      {% comment %}{{ files }}{% endcomment %}
+      <div class="form-group">
+      <button type="submit" class="save btn btn-secondary">등록</button>
+      </div>
     </form>
 </main>
 
