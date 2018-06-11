@@ -4,6 +4,12 @@
 {% block content %}
 <h1 class="display-4"><img src="{% static 'img/room_input.png' %}" width="100%" style="margin: 0px;"></h1>
 
+  <div class="row" style="display: flex; justify-content: center; margin-bottom:30px;">
+        {% for university in universitys %}
+          <a href="{% url 'room_new' university=university.name_eng %}"><button type="button" {% if university_name == university.name_eng %} class="btn btn-secondary" {% else %} class="btn btn-outline-secondary" {% endif %} style="margin-right:10px;">{{ university.name_kor }}</button></a>
+        {% endfor %}
+  </div>
+
 <main class="container">
     <!-- <h1 style="text-align: center; margin-top:60px; margin-bottom: 50px;">다음 양식을 통해 방을 내놓으세요.</h1> -->
     <form method="POST" class="room-form" enctype="multipart/form-data" style="margin-top:60px;">
