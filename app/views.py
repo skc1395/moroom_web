@@ -23,15 +23,13 @@ def room_detail(request, university, pk):
     options = [option.name for option in room.room_option.all()]
     university_lng = room.university.location_long
     university_lat = room.university.location_lat
+    lng = room.location_long
+    lat = room.location_lat
     
-    if room.location_long == '0':
+    if lng == '0':
         lng = room.door.location_long
         lat = room.door.location_lat
-        print(lng, lat)    
-    else:
-        lng = room.location_long
-        lat = room.location_lat
-        print(lng, lat)
+        
 
     return render(request, 'app/room_detail.html', {'room': room, 
                                                 'photos': photos,
