@@ -52,6 +52,7 @@ def room_new(request, university):
     room_agrees = RoomAgree.objects.all()
     room_status = RoomStatus.objects.all()
     room_options = Option.objects.all()
+    universitys = University.objects.all()
     university_obj = University.objects.get(name_eng=university)
     gates = Door.objects.filter(university__name_eng=university) # 학교와 연결된 문 가져오기
 
@@ -59,13 +60,10 @@ def room_new(request, university):
     if request.method == "POST":
         user = User.objects.get(username=request.user.username)
         form = RoomForm(request.POST)
-        print(form)
-        print(request.FILES)
         files = FileFieldForm(request.FILES)
         file_list = request.FILES.getlist('file_field')
 
         if form.is_valid():
-            print(form.cleaned_data)
             room = form.save(commit=False)
             room.user = user
             room.location_long = Get_geocode(request.POST['address'],constant.API_KEY)[0]
@@ -90,7 +88,9 @@ def room_new(request, university):
     'room_agrees' : room_agrees,
     'room_status': room_status,
     'room_options': room_options,
-    'gates': gates
+    'gates': gates,
+    'university_name': university,
+    'universitys': universitys
     })
 
 
