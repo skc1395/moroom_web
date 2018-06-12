@@ -11,10 +11,10 @@ from . import constant
 def room_list(request, university):
     rooms = Room.objects.filter(published_date__lte=timezone.now(), university__name_eng=university).order_by('published_date')
     universitys = University.objects.all()
-    
-    return render(request, 'app/room_list.html', {'rooms': rooms, 
+
+    return render(request, 'app/room_list.html', {'rooms': rooms,
                                                   'universitys': universitys,
-                                                  'university_name': university 
+                                                  'university_name': university
                                                     })
 
 def room_detail(request, university, pk):
@@ -25,19 +25,19 @@ def room_detail(request, university, pk):
     university_lat = room.university.location_lat
     lng = room.location_long
     lat = room.location_lat
-    
+
     if lng == '0':
         lng = room.door.location_long
         lat = room.door.location_lat
-        
 
-    return render(request, 'app/room_detail.html', {'room': room, 
+
+    return render(request, 'app/room_detail.html', {'room': room,
                                                 'photos': photos,
                                                 'options': options,
                                                 'lng': lng,
                                                 'lat': lat,
                                                 'university_lng': university_lng,
-                                                'university_lat': university_lat, 
+                                                'university_lat': university_lat,
                                                 'kakao_key': constant.API_KEY
                                                 })
 
@@ -54,7 +54,7 @@ def room_new(request, university):
     university_obj = University.objects.get(name_eng=university)
     gates = Door.objects.filter(university__name_eng=university) # 학교와 연결된 문 가져오기
 
-    
+
     if request.method == "POST":
         user = User.objects.get(username=request.user.username)
         form = RoomForm(request.POST)

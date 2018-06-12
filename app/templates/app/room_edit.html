@@ -4,7 +4,7 @@
 {% block content %}
 <h1 class="display-4"><img src="{% static 'img/room_input.png' %}" width="100%" style="margin: 0px;"></h1>
 
-  <div class="row" style="display: flex; justify-content: center; margin-bottom:30px;">
+  <div class="row" style="display: flex; justify-content: center; margin-bottom:30px; margin-top:30px;">
         {% for university in universitys %}
           <a href="{% url 'room_new' university=university.name_eng %}"><button type="button" {% if university_name == university.name_eng %} class="btn btn-secondary" {% else %} class="btn btn-outline-secondary" {% endif %} style="margin-right:10px;">{{ university.name_kor }}</button></a>
         {% endfor %}
@@ -17,43 +17,45 @@
       {% csrf_token %}
       <!-- <label for="InputTitle">Title</label> -->
       <label for="InputFee_new">제목</label>
-      <input type="title" class="form-control" id="InputTitle" name="title" aria-describedby="titleHelp" placeholder="제목을 입력하세요." required>
+      <input type="title" class="form-control" id="InputTitle" name="title" aria-describedby="titleHelp" placeholder="ex) 경상대 5분거리 (30자 이내)" required>
       <small id="titleHelp" class="form-text text-muted">&nbsp;</small>
 <!-- 숫자입력처리해야함 -->
       <div class="row">
         <div class="col">
           <label for="InputDeposit_ori">보증금/월세</label>
-          <input type="deposit" class="form-control" name="deposit" id="InputDeposit" aria-describedby="depositHelp" placeholder="보증금" required>
-          <small id="depositHelp" class="form-text text-muted"></small>
+          <input type="deposit" class="form-control" name="deposit" id="InputDeposit" aria-describedby="depositHelp" placeholder="ex) 100(만원)" required>
+          <small id="depositHelp" class="form-text text-muted">&nbsp; 보증금 xxx만원 -> 숫자 'xxx'입력</small>
         </div>
         <div class="col" style="padding-top: 32px;">
-          <input type="rentfee" class="form-control" name="rentfee" id="InputRentfee" aria-describedby="rentfeeHelp" placeholder="월세" required>
-          <small id="rentfeeHelp" class="form-text text-muted">&nbsp;</small>
+          <input type="rentfee" class="form-control" name="rentfee" id="InputRentfee" aria-describedby="rentfeeHelp" placeholder="ex) 30(만원)" required>
+          <small id="rentfeeHelp" class="form-text text-muted">&nbsp; 월세 xx만원 -> 숫자 'xx'입력</small>
         </div>
       </div>
 
-      <div class="row">
+      <div class="row" style="margin-top: 10px;">
         <div class="col">
           <label for="InputFee_new">지원금/관리비</label>
-          <input type="fee_new" class="form-control" name="fee_new" id="InputFee_new" aria-describedby="fee_newHelp" placeholder="지원금" required>
-          <small id="fee_newHelp" class="form-text text-muted">&nbsp;지원할 금액을 입력해주세요.</small>
+          <input type="fee_new" class="form-control" name="fee_new" id="InputFee_new" aria-describedby="fee_newHelp" placeholder="ex) 5개월간 월 2만원 지원" required>
+          <small id="fee_newHelp" class="form-text text-muted">&nbsp;지원할 내용을 입력해주세요.(30자 이내)</small>
         </div>
         <div class="col" style="padding-top: 32px;">
-          <input type="manage_fee" class="form-control" name="manage_fee" id="InputManage_fee" aria-describedby="manage_feeHelp" placeholder="관리비" required>
-          <small id="titleHelp" class="form-text text-muted">&nbsp;관리비는 이렇게이렇게 입력하면 됩니다.</small>
+          <input type="manage_fee" class="form-control" name="manage_fee" id="InputManage_fee" aria-describedby="manage_feeHelp" placeholder="ex)월세에 포함, 전기/가스비 별도" required>
+          <small id="titleHelp" class="form-text text-muted">&nbsp;관리비나 기타 세금내용을 입력해주세요.(30자 이내)</small>
         </div>
       </div>
 
-      <label for="InputAddress">주소</label>
-      <input type="address" class="form-control" name="address" id="InputAddress" aria-describedby="addressHelp" placeholder="주소" required>
-      <small id="titleHelp" class="form-text text-muted">주소는 이렇게이렇게 입력하면 됩니다.</small>
+      <label for="InputAddress"  style="margin-top: 10px;">주소</label>
+      <input type="address" class="form-control" name="address" id="InputAddress" aria-describedby="addressHelp" placeholder="ex) 대구광역시 북구 대학로 80" required>
+      <small id="titleHelp" class="form-text text-muted">정확한 주소가 입력되지않으면 설정한 문위치로 표시됩니다.</small>
 
 
-      <div class="row">
+<!-- 데이트피커적용 -->
+
+      <div class="row" style="margin-top: 10px;">
         <div class="col">
-          <label for="InputDate">입주가능일/계약일</label>
+          <label for="InputDate">입주가능일/계약마감일</label>
           <input type="date_start" class="form-control" name="date_start" id="InputDate_start" aria-describedby="date_startHelp" placeholder="입주가능일" required>
-          <small id="titleHelp" class="form-text text-muted">입주가능한 날짜를 입력해주세요.</small>
+          <small id="titleHelp" class="form-text text-muted">입주가능한 날짜(계약시작일)를 입력해주세요.</small>
         </div>
         <div class="col" style="padding-top: 32px;">
           <input type="date_end" class="form-control" name="date_end" id="InputDate_end" aria-describedby="date_endHelp" placeholder="계약마감일" required>
@@ -61,7 +63,7 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="row" style="margin-top: 10px;">
         <div class="col">
           <div class="form-group">
             <label for="exampleFormControlSelect1">방형태</label>
@@ -84,14 +86,11 @@
         </div>
       </div>
 
-      <label for="InputContact">연락수단</label>
-      <input type="contact" class="form-control" name="contact" id="Contact" aria-describedby="contactHelp" placeholder="연락수단" required>
+      <label for="InputContact">연락방법</label>
+      <input type="contact" class="form-control" name="contact" id="Contact" aria-describedby="contactHelp" placeholder="ex) https://open.kakao.com/xxxxx 또는 010-xxxx-xxxx" required>
       <small id="titleHelp" class="form-text text-muted">오픈카톡url, 연락처 등 연락수단을 입력해주세요.</small>
 
-
-<!-- 연결해야함 -->
-
-      <label for="InputOption">옵션</label>
+      <label for="InputOption" style="margin-top: 10px; display:block;">옵션</label>
         {% for option in room_options %}
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="room_option" value="{{ option.id }}">
@@ -107,7 +106,7 @@
         <label class="form-check-label" for="inlineCheckbox3">베란다</label>
       </div>{% endcomment %}
 
-      <div class="form-group">
+      <div class="form-group" style="margin-top: 10px;">
         <label for="exampleFormControlSelect3">문(Gate)</label>
         <select class="form-control" name="door" id="exampleFormControlSelect3">
           {% for gate in gates %}
@@ -122,24 +121,25 @@
       </div>
 
       <div class="form-group">
-        <label for="exampleFormControlSelect4">계약가능여부</label>
-        <select class="form-control" name="room_status" id="exampleFormControlSelect4">
+        <label for="disabledSelect">계약가능여부</label>
+        <select class="form-control" name="room_status" id="disabledSelect">
           {% for status in room_status %}
           <option value="{{ status.id }}">{{ status.status }}</option>
           {% endfor %}
         </select>
       </div>
 
-      <label for="InputPhoto">방사진</label>
+      <label for="InputPhoto" style="display:block;">방사진</label>
        <input type="file" name="file_field" multiple>
       {% comment %}<div class="custom-file">
         <input type="file" class="custom-file-input" name="file_field" id="validatedCustomFile" multiple>
           <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
       </div>{% endcomment %}
+      <small id="titleHelp" class="form-text text-muted">방사진을 1~5개 선택해주세요.</small>
 
       {% comment %}{{ files }}{% endcomment %}
-      <div class="form-group">
-      <button type="submit" class="save btn btn-secondary">등록</button>
+      <div class="form-group" style="display: flex; justify-content: center;">
+      <button type="submit" class="save btn btn-outline-danger">방등록하기</button>
       </div>
     </form>
 </main>

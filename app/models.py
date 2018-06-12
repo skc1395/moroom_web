@@ -35,12 +35,12 @@ class University(models.Model):
     address : 중앙 좌표에 대한 주소값을 저장한다.
     location : 학교의 중앙 좌표값을 저장한다.
     """
-    name_eng = models.CharField(max_length=50) 
+    name_eng = models.CharField(max_length=50)
     name_kor = models.CharField(max_length=50)
     address = models.CharField(max_length=100, default="")
     location_long = models.CharField(max_length=50)
     location_lat = models.CharField(max_length=50)
-    
+
 
     def __str__(self):
         return self.name_kor
