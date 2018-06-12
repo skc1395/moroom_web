@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import logout, authenticate, login
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.conf import settings
+from django.urls import reverse
 from .models import Profile
 from allauth.socialaccount.models import SocialApp
 from allauth.socialaccount.templatetags.socialaccount import get_providers
@@ -46,6 +47,11 @@ def signup(request):
             messages.success(request, '회원가입이 완료되었습니다.')
 
             return redirect('log_in')
+
+        
+            
+            
+            
 
     else:
         # messages.warning(request, '회원정보가 올바르지않습니다.')

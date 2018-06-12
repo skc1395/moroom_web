@@ -30,6 +30,11 @@
           background-color: #ffeb00;
           border-color: #ffde00;
       }
+
+      .display-error {
+          color: red;
+
+      }
     </style>
 </head>
 <body class="text-center">
@@ -45,30 +50,60 @@
         {% endfor %}
     {% endif %}
     <p style="margin: 0px;">
-      <label for="inputID" class="sr-only">ID</label>
-      <input type="username" id="inputID" class="form-control" placeholder="아이디" name="username" required autofocus>
+      <label for="username" class="sr-only">ID</label>
+      <input type="username" id="inputID" class="form-control" {% if user_form.user_name.value %} value="{{ user_form.username.value }}" {% else %} placeholder="아이디" {% endif %} name="username" required autofocus>
     </p>
+    {% if user_form.username.errors %}
+      {% for error in user_form.username.errors %}
+      <strong><small class="display-error">{{ error|escape }}</small></strong>
+      {% endfor %}
+      
+    {% endif %}
 
     <p style="margin: 0px;">
-      <label for="inputPassword" class="sr-only">Password</label>
-      <input type="password" id="inputPassword" class="form-control" placeholder="비밀번호" name="password" required>
+      <label for="password" class="sr-only">Password</label>
+      <input type="password" id="inputPassword" class="form-control" {% if user_form.password.value %} value="{{ user_form.password.value }}" {% else %} placeholder="비밀번호" {% endif %} name="password" required>
     </p>
+    {% if user_form.password.errors %}
+      {% for error in user_form.password.errors %}
+      <strong><small class="display-error">{{ error|escape }}</small></strong>
+      {% endfor %}
+      
+    {% endif %}
 
     <p style="margin: 0px;">
-      <label for="inputName" class="sr-only">Name</label>
-      <input type="first_name" id="inputName" class="form-control" placeholder="이름" name="first_name" required>
+      <label for="first_name" class="sr-only">Name</label>
+      <input type="first_name" id="inputName" class="form-control" {% if user_form.first_name.value %} value="{{ user_form.first_name.value }}" {% else %} placeholder="이름" {% endif %} name="first_name" required>
     </p>
+    {% if user_form.first_name.errors %}
+      {% for error in user_form.first_name.errors %}
+      <strong><small class="display-error">{{ error|escape }}</small></strong>
+      {% endfor %}
+      
+    {% endif %}
 
     <p style="margin: 0px;">
-      <label for="inputContact" class="sr-only">Contact</label>
-      <input type="contact" id="inputContact" class="form-control" placeholder="연락처" name="contact" required>
+      <label for="contact" class="sr-only">Contact</label>
+      <input type="contact" id="inputContact" class="form-control" {% if profile_form.contact.value %} value="{{ profile_form.contact.value }}" {% else %} placeholder="연락처" {% endif %} name="contact" required>
     </p>
+    {% if profile_form.contact.errors %}
+      {% for error in profile_form.contact.errors %}
+      <strong><small class="display-error">{{ error|escape }}</small></strong>
+      {% endfor %}
+      
+    {% endif %}
 
     <p>
-      <label for="inputEmail" class="sr-only">Email</label>
-      <input type="email" id="inputEmail" class="form-control" placeholder="이메일" name="email" required>
+      <label for="email" class="sr-only">Email</label>
+      <input type="email" id="inputEmail" class="form-control" {% if user_form.email.value %} value="{{ user_form.email.value }}" {% else %} placeholder="이메일" {% endif %} name="email" required>
     </p>
-
+    {% if user_form.email.errors %}
+      {% for error in user_form.email.errors %}
+      <strong><small class="display-error">{{ error|escape }}</small></strong>
+      {% endfor %}
+      
+    {% endif %}
+    
 
     <button class="btn btn-lg btn-primary btn-block" type="submit" style="margin-bottom: 10px">회원가입</button>
     <a href="{% url 'log_in' %}">로그인하러가기</a>
