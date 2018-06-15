@@ -57,7 +57,7 @@
       {% for error in user_form.username.errors %}
       <strong><small class="display-error">{{ error|escape }}</small></strong>
       {% endfor %}
-      
+
     {% endif %}
 
     <p style="margin: 0px;">
@@ -68,7 +68,7 @@
       {% for error in user_form.password.errors %}
       <strong><small class="display-error">{{ error|escape }}</small></strong>
       {% endfor %}
-      
+
     {% endif %}
 
     <p style="margin: 0px;">
@@ -79,7 +79,7 @@
       {% for error in user_form.first_name.errors %}
       <strong><small class="display-error">{{ error|escape }}</small></strong>
       {% endfor %}
-      
+
     {% endif %}
 
     <p style="margin: 0px;">
@@ -90,7 +90,7 @@
       {% for error in profile_form.contact.errors %}
       <strong><small class="display-error">{{ error|escape }}</small></strong>
       {% endfor %}
-      
+
     {% endif %}
 
     <p>
@@ -101,9 +101,9 @@
       {% for error in user_form.email.errors %}
       <strong><small class="display-error">{{ error|escape }}</small></strong>
       {% endfor %}
-      
+
     {% endif %}
-    
+
 
     <button class="btn btn-lg btn-primary btn-block" type="submit" style="margin-bottom: 10px">회원가입</button>
     <a href="{% url 'log_in' %}">로그인하러가기</a>
