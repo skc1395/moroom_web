@@ -6,6 +6,7 @@ from django.dispatch import receiver
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     contact = models.CharField(max_length=30)
+    is_updated = models.BooleanField(default=False)
 
     def __str__(self):
         return self.contact
@@ -20,13 +21,4 @@ def create_user_profile(sender, instance, created, **kwargs):
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
 
-class Photo(models.Model):
-    image = models.ImageField()
 
-
-class Post(models.Model):
-    title = models.CharField(max_length=25)
-    images = models.ForeignKey(Photo)
-
-    def __str__(self):
-        return self.title

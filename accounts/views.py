@@ -42,6 +42,7 @@ def signup(request):
             obj = User.objects.get(username=user_form.cleaned_data['username'])
             profile = Profile.objects.get(user=obj)
             profile.contact = profile_form.cleaned_data['contact']
+            profile.is_updated = True
             profile.save()
 
             messages.success(request, '회원가입이 완료되었습니다.')
@@ -122,7 +123,23 @@ def log_out(request):
 
 def profile(request):
 
-    return redirect('main')
+    if request.method == 'POST':
+        form = ProfileForm(request.POST)
+        
+        if form.is_valid():
+            user = Profile.objects.get(user=request.user.id)
+            user.contact = form.cleaned_data['contact']
+            user.is_updated = True
+            user.save()
+            
+            return redirect('main')
+
+    else:
+        form = ProfileForm()
+
+    return render(request, 'accounts/profile.html', {
+        'form': form
+    })
 
 # def check_id(request):
 #     if request.method == 'POST':
