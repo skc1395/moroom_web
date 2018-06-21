@@ -8,7 +8,6 @@ def Get_geocode(address, key):
     만약 주소값에 오류가 있다면 -> api 요청 결과, 빈 리스트이면(IndexError)
     lng와 lat 값으로 0으로 주고, 사용자가 입력한 문(gate)의 위도와 경도값을 저장한다.
 
-
     """
 
     url = 'https://dapi.kakao.com/v2/local/search/address.json'
@@ -26,6 +25,7 @@ def Get_geocode(address, key):
         lat = 0
 
     return (lng,lat)
+
 
 
 

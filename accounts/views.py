@@ -12,11 +12,6 @@ from allauth.socialaccount.templatetags.socialaccount import get_providers
 from .forms import UserForm, ProfileForm, LoginForm, FileFieldForm
 
 
-
-# def home(request):
-#
-#     return render(request, 'account/home.html', {})
-
 def signup(request):
 
 
@@ -47,12 +42,7 @@ def signup(request):
 
             messages.success(request, '회원가입이 완료되었습니다.')
 
-            return redirect('log_in')
-
-        
-            
-            
-            
+            return redirect('log_in')        
 
     else:
         # messages.warning(request, '회원정보가 올바르지않습니다.')
@@ -105,14 +95,6 @@ def log_in(request):
             'providers': providers
             })
 
-# def log_in(request):
-
-
-
-#     return auth_login(request,
-#         authentication_form=LoginForm,
-#         template_name='accounts/login.html',
-#         extra_context={})
 
 def log_out(request):
     logout(request)
@@ -141,15 +123,3 @@ def profile(request):
         'form': form
     })
 
-# def check_id(request):
-#     if request.method == 'POST':
-#         user = User.objects.get(username=request.POST['username'])
-#
-#         if user is not None:
-#             print('이미 가입된 아이디가 있습니다')
-#
-#             return redirect('signup')
-#
-#         else:
-#             print('가입이 가능합니다 ')
-#

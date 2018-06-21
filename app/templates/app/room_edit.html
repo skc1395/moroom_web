@@ -1,6 +1,7 @@
 {% extends 'app/base.html' %}
 {% load staticfiles %}
 
+
 {% block content %}
 <h1 class="display-4"><img src="{% static 'img/room_input.png' %}" width="100%" style="margin: 0px;"></h1>
 
@@ -14,13 +15,15 @@
     <!-- <h1 style="text-align: center; margin-top:60px; margin-bottom: 50px;">다음 양식을 통해 방을 내놓으세요.</h1> -->
     <form method="POST" class="room-form" enctype="multipart/form-data" style="margin-top:60px;">
       <div class="form-group">
+       
       {% csrf_token %}
       <!-- <label for="InputTitle">Title</label> -->
       <label for="InputFee_new" style="font-weight:bold;">제목</label>
-      <input type="title" class="form-control" id="InputTitle"  {% if user_form.title.value %} value="{{ user_form.title.value }}" {% else %} placeholder="ex) 경상대 5분거리 (30자 이내)" {% endif %} name="title" aria-describedby="titleHelp"  required>
+      
+      <input type="title" class="form-control" id="InputTitle"  {% if form.title.value %} value="{{ form.title.value }}" {% else %} placeholder="ex) 경상대 5분거리 (30자 이내)" {% endif %} name="title" aria-describedby="titleHelp"  required>
       <small id="titleHelp" class="form-text text-muted">&nbsp;</small>
-      {% if room_form.title.errors %}
-        {% for error in room_form.title.errors %}
+      {% if form.title.errors %}
+        {% for error in form.title.errors %}
         <strong><small class="display-error">{{ error|escape }}</small></strong>
         {% endfor %}
       {% endif %}
@@ -28,20 +31,20 @@
       <div class="row">
         <div class="col">
           <label for="InputDeposit_ori" style="font-weight:bold;">보증금/월세</label>
-          <input type="deposit" class="form-control" id="InputDeposit" {% if user_form.deposit.value %} value="{{ user_form.deposit.value }}" {% else %} placeholder="ex) 100(만원)" {% endif %} name="deposit" aria-describedby="depositHelp" required>
+          <input type="deposit" class="form-control" id="InputDeposit" {% if form.deposit.value %} value="{{ form.deposit.value }}" {% else %} placeholder="ex) 100(만원)" {% endif %} name="deposit" aria-describedby="depositHelp" required>
           <small id="depositHelp" class="form-text text-muted">&nbsp; 보증금 xxx만원 -> 숫자 'xxx'입력</small>
-          {% if room_form.deposit.errors %}
-            {% for error in room_form.deposit.errors %}
+          {% if form.deposit.errors %}
+            {% for error in form.deposit.errors %}
             <strong><small class="display-error">{{ error|escape }}</small></strong>
             {% endfor %}
           {% endif %}
         </div>
         <div class="col" style="padding-top: 32px;">
           <input type="rentfee" class="form-control" id="InputRentfee"
-          {% if user_form.rentfee.value %} value="{{ user_form.rentfee.value }}" {% else %} placeholder="ex) 30(만원)" {% endif %} name="rentfee" aria-describedby="rentfeeHelp" required>
+          {% if form.rentfee.value %} value="{{ form.rentfee.value }}" {% else %} placeholder="ex) 30(만원)" {% endif %} name="rentfee" aria-describedby="rentfeeHelp" required>
           <small id="rentfeeHelp" class="form-text text-muted">&nbsp; 월세 xx만원 -> 숫자 'xx'입력</small>
-          {% if room_form.rentfee.errors %}
-            {% for error in room_form.rentfee.errors %}
+          {% if form.rentfee.errors %}
+            {% for error in form.rentfee.errors %}
             <strong><small class="display-error">{{ error|escape }}</small></strong>
             {% endfor %}
           {% endif %}
@@ -51,21 +54,21 @@
       <div class="row" style="margin-top: 20px;">
         <div class="col">
           <label for="InputFee_new" style="font-weight:bold;">지원금/관리비</label>
-          <input type="fee_new" class="form-control" id="InputFee_new" {% if user_form.fee_new.value %} value="{{ user_form.fee_new.value }}" {% else %} placeholder="ex) 5개월간 월 2만원 지원" {% endif %} name="fee_new" aria-describedby="fee_newHelp" required>
+          <input type="fee_new" class="form-control" id="InputFee_new" {% if form.fee_new.value %} value="{{ form.fee_new.value }}" {% else %} placeholder="ex) 5개월간 월 2만원 지원" {% endif %} name="fee_new" aria-describedby="fee_newHelp" required>
 
           <small id="fee_newHelp" class="form-text text-muted">&nbsp;지원할 내용을 입력해주세요.(30자 이내)</small>
-          {% if room_form.fee_new.errors %}
-            {% for error in room_form.fee_new.errors %}
+          {% if form.fee_new.errors %}
+            {% for error in form.fee_new.errors %}
             <strong><small class="display-error">{{ error|escape }}</small></strong>
             {% endfor %}
           {% endif %}
         </div>
         <div class="col" style="padding-top: 32px;">
-          <input type="manage_fee" class="form-control" id="InputManage_fee" {% if user_form.manage_fee.value %} value="{{ user_form.manage_fee.value }}" {% else %} placeholder="ex)월세에 포함, 전기/가스비 별도" {% endif %} name="manage_fee" aria-describedby="manage_feeHelp"  required>
+          <input type="manage_fee" class="form-control" id="InputManage_fee" {% if form.manage_fee.value %} value="{{ form.manage_fee.value }}" {% else %} placeholder="ex)월세에 포함, 전기/가스비 별도" {% endif %} name="manage_fee" aria-describedby="manage_feeHelp"  required>
           <small id="titleHelp" class="form-text text-muted">&nbsp;관리비나 기타 세금내용을 입력해주세요.(30자 이내)</small>
 
-          {% if room_form.manage_fee.errors %}
-            {% for error in room_form.manage_fee.errors %}
+          {% if form.manage_fee.errors %}
+            {% for error in form.manage_fee.errors %}
             <strong><small class="display-error">{{ error|escape }}</small></strong>
             {% endfor %}
           {% endif %}
@@ -73,10 +76,10 @@
       </div>
 
       <label for="InputAddress"  style="margin-top: 20px; font-weight:bold;">주소</label>
-      <input type="address" class="form-control"  id="InputAddress" {% if user_form.address.value %} value="{{ user_form.address.value }}" {% else %} placeholder="ex) 대구광역시 북구 대학로 80" {% endif %} name="address" aria-describedby="addressHelp" required>
+      <input type="address" class="form-control"  id="InputAddress" {% if form.address.value %} value="{{ form.address.value }}" {% else %} placeholder="ex) 대구광역시 북구 대학로 80" {% endif %} name="address" aria-describedby="addressHelp" required>
       <small id="titleHelp" class="form-text text-muted">정확한 주소가 입력되지않으면 설정한 문위치로 표시됩니다.</small>
-      {% if room_form.address.errors %}
-        {% for error in room_form.address.errors %}
+      {% if form.address.errors %}
+        {% for error in form.address.errors %}
         <strong><small class="display-error">{{ error|escape }}</small></strong>
         {% endfor %}
       {% endif %}
@@ -86,19 +89,19 @@
       <div class="row" style="margin-top: 20px;">
         <div class="col">
           <label for="InputDate" style="font-weight:bold;">입주가능일/계약마감일</label>
-          <input type="date_start" class="form-control" name="date_start" id="InputDate_start" aria-describedby="date_startHelp" placeholder="입주가능일" required>
+          <input type="date_start" class="form-control" name="date_start" id="datepicker1" {% if form.date_start.value %} value="{{ form.date_start.value }}"  {% else %} placeholder="입주가능일" {% endif %} aria-describedby="date_startHelp" required>
           <small id="titleHelp" class="form-text text-muted">입주가능한 날짜(계약시작일)를 입력해주세요.</small>
-          {% if room_form.date_start.errors %}
-            {% for error in room_form.date_start.errors %}
+          {% if form.date_start.errors %}
+            {% for error in form.date_start.errors %}
             <strong><small class="display-error">{{ error|escape }}</small></strong>
             {% endfor %}
           {% endif %}
         </div>
         <div class="col" style="padding-top: 32px;">
-          <input type="date_end" class="form-control" name="date_end" id="InputDate_end" aria-describedby="date_endHelp" placeholder="계약마감일" required>
+          <input type="date_end" class="form-control" name="date_end" id="InputDate_end" {% if form.date_end.value %} value="{{ form.date_end.value }}"  {% else %} placeholder="계약마감일" {% endif %} aria-describedby="date_endHelp" required>
           <small id="titleHelp" class="form-text text-muted">계약마감날짜를 입력해주세요.</small>
-          {% if room_form.date_end.errors %}
-            {% for error in room_form.date_end.errors %}
+          {% if form.date_end.errors %}
+            {% for error in form.date_end.errors %}
             <strong><small class="display-error">{{ error|escape }}</small></strong>
             {% endfor %}
           {% endif %}
@@ -110,8 +113,8 @@
           <div class="form-group">
             <label for="exampleFormControlSelect1" style="font-weight:bold;">방형태</label>
             <select class="form-control" name="room_type" id="exampleFormControlSelect1">
-              {% for room_type in room_types %}
-              <option value="{{ room_type.id }}">{{ room_type.name }}</option>
+              {% for room_type in room_types %} 
+              <option value="{{ room_type.id }}" {% if form.room_type.value == room_type.id %} selected{% endif %}>{{ room_type.name }}</option>
               {% endfor %}
             </select>
           </div>
@@ -121,7 +124,7 @@
             <label for="exampleFormControlSelect2" style="font-weight:bold;">집주인동의</label>
             <select class="form-control" name="room_agree" id="exampleFormControlSelect2">
               {% for room_agree in room_agrees %}
-              <option value="{{ room_agree.id }}">{{ room_agree.agreement }}</option>
+              <option value="{{ room_agree.id }}" {% if form.room_agree.value == room_agree.id %} selected{% endif %}>{{ room_agree.agreement }}</option>
               {% endfor %}
           </select>
           </div>
@@ -129,10 +132,10 @@
       </div>
 
       <label for="InputContact" style="font-weight:bold; margin-top:10px;">연락방법</label>
-      <input type="contact" class="form-control"  id="Contact" {% if user_form.contact.value %} value="{{ user_form.contact.value }}" {% else %} placeholder="ex) https://open.kakao.com/xxxxx 또는 010-xxxx-xxxx" {% endif %} name="contact" aria-describedby="contactHelp" required>
+      <input type="contact" class="form-control"  id="Contact" {% if form.contact.value %} value="{{ form.contact.value }}" {% else %} placeholder="ex) https://open.kakao.com/xxxxx 또는 010-xxxx-xxxx" {% endif %} name="contact" aria-describedby="contactHelp" required>
       <small id="titleHelp" class="form-text text-muted">오픈카톡url, 연락처 등 연락수단을 입력해주세요.</small>
-      {% if room_form.contact.errors %}
-        {% for error in room_form.contact.errors %}
+      {% if form.contact.errors %}
+        {% for error in form.contact.errors %}
         <strong><small class="display-error">{{ error|escape }}</small></strong>
         {% endfor %}
       {% endif %}
@@ -140,33 +143,26 @@
       <label for="InputOption" style="margin-top: 20px; display:block; font-weight:bold;">옵션</label>
         {% for option in room_options %}
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="room_option" value="{{ option.id }}">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="room_option" value="{{ option.id }}" {% if option.id in form.room_option.value %} checked{% endif %}>
         <label class="form-check-label" for="inlineCheckbox1">{{ option.name }}</label>
       </div>
       {% endfor %}
-      {% comment %}<div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-        <label class="form-check-label" for="inlineCheckbox2" style="font-weight:bold;">냉장고</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-        <label class="form-check-label" for="inlineCheckbox3" style="font-weight:bold;">베란다</label>
-      </div>{% endcomment %}
 
       <div class="form-group" style="margin-top: 20px;">
         <label for="exampleFormControlSelect3" style="font-weight:bold;">문(Gate)</label>
         <select class="form-control" name="door" id="exampleFormControlSelect3">
           {% for gate in gates %}
-          <option value="{{ gate.id }}">{{ gate.name }}</option>
+          <!-- view 단에서 gate로 문 전체에 대한 정보를 넘겨주고 있음.  -->
+          <option value="{{ gate.id }}" {% if form.door.value == gate.id %} selected {% endif %}>{{ gate.name }}</option>
           {% endfor %}
       </select>
       </div>
 
       <div class="form-group">
         <label for="exampleFormControlTextarea1" style="font-weight:bold;">기타 추가사항</label>
-        <textarea type="text" class="form-control" name="text" id="exampleFormControlTextarea1" rows="5"></textarea>
-        {% if room_form.text.errors %}
-          {% for error in room_form.text.errors %}
+        <textarea type="text" class="form-control" name="text" id="exampleFormControlTextarea1" rows="5">{% if form.text.value %} {{ form.text.value }} {% endif %}</textarea>
+        {% if form.text.errors %}
+          {% for error in form.text.errors %}
           <strong><small class="display-error">{{ error|escape }}</small></strong>
           {% endfor %}
         {% endif %}
@@ -176,7 +172,7 @@
         <label for="disabledSelect" style="font-weight:bold;">계약가능여부</label>
         <select class="form-control" name="room_status" id="disabledSelect">
           {% for status in room_status %}
-          <option value="{{ status.id }}">{{ status.status }}</option>
+          <option value="{{ status.id }}" {% if form.status.value == room_type.id %} selected{% endif %}>{{ status.status }}</option>
           {% endfor %}
         </select>
       </div>
