@@ -15,11 +15,11 @@
     <!-- <h1 style="text-align: center; margin-top:60px; margin-bottom: 50px;">다음 양식을 통해 방을 내놓으세요.</h1> -->
     <form method="POST" class="room-form" enctype="multipart/form-data" style="margin-top:60px;">
       <div class="form-group">
-       
+
       {% csrf_token %}
       <!-- <label for="InputTitle">Title</label> -->
       <label for="InputFee_new" style="font-weight:bold;">제목</label>
-      
+
       <input type="title" class="form-control" id="InputTitle"  {% if form.title.value %} value="{{ form.title.value }}" {% else %} placeholder="ex) 경상대 5분거리 (30자 이내)" {% endif %} name="title" aria-describedby="titleHelp"  required>
       <small id="titleHelp" class="form-text text-muted">&nbsp;</small>
       {% if form.title.errors %}
@@ -28,6 +28,7 @@
         {% endfor %}
       {% endif %}
 <!-- 숫자입력처리해야함 -->
+
       <div class="row">
         <div class="col">
           <label for="InputDeposit_ori" style="font-weight:bold;">보증금/월세</label>
@@ -85,11 +86,12 @@
       {% endif %}
 
 <!-- 데이트피커적용 -->
+<!-- <input type="date" id="date" class="__web-inspector-hide-shortcut__"> -->
 
       <div class="row" style="margin-top: 20px;">
         <div class="col">
           <label for="InputDate" style="font-weight:bold;">입주가능일/계약마감일</label>
-          <input type="date_start" class="form-control" name="date_start" id="datepicker" {% if form.date_start.value %} value="{{ form.date_start.value }}"  {% else %} placeholder="입주가능일" {% endif %} aria-describedby="date_startHelp" required>
+          <input type="date" class="form-control" name="date_start" id="date" {% if form.date_start.value %} value="{{ form.date_start.value }}"  {% else %} placeholder="입주가능일" {% endif %} aria-describedby="date_startHelp" required>
           <small id="titleHelp" class="form-text text-muted">입주가능한 날짜(계약시작일)를 입력해주세요.</small>
           {% if form.date_start.errors %}
             {% for error in form.date_start.errors %}
@@ -98,7 +100,7 @@
           {% endif %}
         </div>
         <div class="col" style="padding-top: 32px;">
-          <input type="date_end" class="form-control" name="date_end" id="InputDate_end" {% if form.date_end.value %} value="{{ form.date_end.value }}"  {% else %} placeholder="계약마감일" {% endif %} aria-describedby="date_endHelp" required>
+          <input type="date" class="form-control" name="date_end" id="date" {% if form.date_end.value %} value="{{ form.date_end.value }}"  {% else %} placeholder="계약마감일" {% endif %} aria-describedby="date_endHelp" required>
           <small id="titleHelp" class="form-text text-muted">계약마감날짜를 입력해주세요.</small>
           {% if form.date_end.errors %}
             {% for error in form.date_end.errors %}
@@ -113,7 +115,7 @@
           <div class="form-group">
             <label for="exampleFormControlSelect1" style="font-weight:bold;">방형태</label>
             <select class="form-control" name="room_type" id="exampleFormControlSelect1">
-              {% for room_type in room_types %} 
+              {% for room_type in room_types %}
               <option value="{{ room_type.id }}" {% if form.room_type.value == room_type.id %} selected{% endif %}>{{ room_type.name }}</option>
               {% endfor %}
             </select>

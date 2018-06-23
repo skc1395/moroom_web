@@ -1,0 +1,19 @@
+body {
+  padding-top: 5rem;
+}
+
+.starter-template {
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+.room {
+    margin-bottom: 70px;
+}
+
+.top-menu, .top-menu:hover, .top-menu:visited {
+    color: #ff0000;
+    float: none;
+    font-size: 26pt;
+    margin-right: 20px;
+}
