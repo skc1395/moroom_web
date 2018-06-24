@@ -91,7 +91,7 @@
       <div class="row" style="margin-top: 20px;">
         <div class="col">
           <label for="InputDate" style="font-weight:bold;">입주가능일/계약마감일</label>
-          <input type="date" class="form-control" name="date_start" id="date" {% if form.date_start.value %} value="{{ form.date_start.value }}"  {% else %} placeholder="입주가능일" {% endif %} aria-describedby="date_startHelp" required>
+          <input type="date" class="form-control" name="date_start" id="date" {% if form.date_start.value %} value="{{ form.date_start.value| date:'Y-m-d' }}"  {% else %} placeholder="입주가능일" {% endif %} aria-describedby="date_startHelp" required>
           <small id="titleHelp" class="form-text text-muted">입주가능한 날짜(계약시작일)를 입력해주세요.</small>
           {% if form.date_start.errors %}
             {% for error in form.date_start.errors %}
@@ -100,7 +100,7 @@
           {% endif %}
         </div>
         <div class="col" style="padding-top: 32px;">
-          <input type="date" class="form-control" name="date_end" id="date" {% if form.date_end.value %} value="{{ form.date_end.value }}"  {% else %} placeholder="계약마감일" {% endif %} aria-describedby="date_endHelp" required>
+          <input type="date" class="form-control" name="date_end" id="date" {% if form.date_end.value %} value="{{ form.date_end.value| date:'Y-m-d' }}"  {% else %} placeholder="계약마감일" {% endif %} aria-describedby="date_endHelp" required>
           <small id="titleHelp" class="form-text text-muted">계약마감날짜를 입력해주세요.</small>
           {% if form.date_end.errors %}
             {% for error in form.date_end.errors %}
