@@ -9,7 +9,7 @@ class Profile(models.Model):
     is_updated = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.contact
+        return '{0} - {1}'.format(self.user.username, self.contact)
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):

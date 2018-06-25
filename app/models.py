@@ -96,3 +96,6 @@ class Room(models.Model):
 class Photo(models.Model):
     image = models.ImageField()
     rooms = models.ForeignKey(Room, related_name='photo')
+
+    def __str__(self):
+        return '{0} - {1}'.format(self.rooms.title, self.image)
