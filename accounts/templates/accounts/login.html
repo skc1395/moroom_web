@@ -68,7 +68,7 @@
               {% if provider.social_app %}
 
               <a {% if provider.name == 'Kakao' %}class="btn btn-lg btn-primary btn-block btn-kakao" {% else %} class="btn btn-lg btn-primary btn-block btn-naver"{% endif %}href="{% provider_login_url provider.id %}">
-              {{ provider.name }}로 시작하기
+              {{ provider.name }}로 로그인하기
               </a>
 
               {% else %}

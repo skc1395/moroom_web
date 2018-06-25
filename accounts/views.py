@@ -42,7 +42,7 @@ def signup(request):
 
             messages.success(request, '회원가입이 완료되었습니다.')
 
-            return redirect('log_in')        
+            return redirect('log_in')
 
     else:
         # messages.warning(request, '회원정보가 올바르지않습니다.')
@@ -107,13 +107,13 @@ def profile(request):
 
     if request.method == 'POST':
         form = ProfileForm(request.POST)
-        
+
         if form.is_valid():
             user = Profile.objects.get(user=request.user.id)
             user.contact = form.cleaned_data['contact']
             user.is_updated = True
             user.save()
-            
+
             return redirect('main')
 
     else:
@@ -122,4 +122,3 @@ def profile(request):
     return render(request, 'accounts/profile.html', {
         'form': form
     })
-

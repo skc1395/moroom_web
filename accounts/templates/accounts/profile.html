@@ -1,6 +1,54 @@
- <form action="{% url 'profile' %}" method="post">
-    
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="OK">
-</form>
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>로그인</title>
+
+      <!-- Bootstrap CSS-->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <link href="//fonts.googleapis.com/earlyaccess/nanumgothic.css" rel="stylesheet" type="text/css">
+
+      <!-- Custom styles for this template -->
+      <link href="{% static 'css/profile.css' %}" rel="stylesheet">
+      <style>
+      .mb-4, .my-4 {
+          margin-bottom: 0.5rem!important;
+      }
+      .btn-naver {
+          color: #fff;
+         background-color: #1ec800;
+          border-color: #34b31e;
+          width: 300;
+      }
+
+      .btn-kakao {
+          color: #3c3c3c;
+          background-color: #ffeb00;
+          border-color: #ffde00;
+      }
+
+
+      </style>
+  </head>
+  <body class="text-center">
+
+    <form class="form-profile" action="{% url 'profile' %}" method="post">
+      <div class="container">
+        <a href="{% url 'main' %}"><img class="mb-4" src="{% static 'img/logo_1.png' %}" height="120px" align="middle"></a>
+      </div>
+      {% csrf_token %}
+      <p>이어살기 서비스는 소셜계정에 <br/>연락처를 필요로 합니다. <br/>연락가능한 번호를 추가해주세요.</p>
+      <!-- <form action="{% url 'profile' %}" method="post">
+
+         {% csrf_token %}
+         {{ form }}
+         <input type="submit" value="OK">
+     </form> -->
+      <label for="inputNumber" class="sr-only">Phone Number</label>
+      <input id="inputNumber" class="form-control" placeholder="연락처(ex.010-OOOO-XXXX)" name="form" required autofocus>
+      <button class="btn btn-lg btn-primary btn-block" type="submit" style="margin-bottom: 10px; margin-top: 15px;">확인</button>
+    </form>
+  </body>
+</html>
