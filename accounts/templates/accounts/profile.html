@@ -35,10 +35,11 @@
   <body class="text-center">
 
     <form class="form-profile" action="{% url 'profile' %}" method="post">
+        {% csrf_token %}
       <div class="container">
         <a href="{% url 'main' %}"><img class="mb-4" src="{% static 'img/logo_1.png' %}" height="120px" align="middle"></a>
       </div>
-      {% csrf_token %}
+      
       <p>이어살기 서비스는 소셜계정에 <br/>연락처를 필요로 합니다. <br/>연락가능한 번호를 추가해주세요.</p>
       <!-- <form action="{% url 'profile' %}" method="post">
 
@@ -47,7 +48,7 @@
          <input type="submit" value="OK">
      </form> -->
       <label for="inputNumber" class="sr-only">Phone Number</label>
-      <input id="inputNumber" class="form-control" placeholder="연락처(ex.010-OOOO-XXXX)" name="form" required autofocus>
+      <input id="inputNumber" class="form-control" placeholder="연락처(ex.010-OOOO-XXXX)" name="contact" required autofocus>
       <button class="btn btn-lg btn-primary btn-block" type="submit" style="margin-bottom: 10px; margin-top: 15px;">확인</button>
     </form>
   </body>
