@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.contrib import messages
 from .models import Room, RoomType, RoomAgree, Option, RoomStatus, Photo, University, Door
 from .forms import RoomForm, FileFieldForm
 from .get_geocode import Get_geocode
@@ -79,8 +80,14 @@ def room_new(request, university):
                 Photo.objects.create(image=f, rooms=room_obj)
             return redirect('room_detail', university=university, pk=room.pk)
     else:
-        form = RoomForm()
-        files = FileFieldForm()
+        if request.user.profile.is_updated:
+            form = RoomForm()
+            files = FileFieldForm()
+
+        else:
+            messages.warning(request, '추가정보를 입력해주세요.')
+            return redirect('profile')
+            
     return render(request, 'app/room_edit.html', {
     'form': form,
     'files' : files,

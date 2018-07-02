@@ -36,6 +36,12 @@
 
     <form class="form-profile" action="{% url 'profile' %}" method="post">
         {% csrf_token %}
+        {% if messages %}
+          {% for message in messages %}
+          <div{% if message.tags == 'success' %} class="alert alert-success" role="alert"
+          {% elif message.tags == 'warning' %} class="alert alert-warning" role="alert" {% endif %}>{{ message }}</div>
+          {% endfor %}
+        {% endif %}
       <div class="container">
         <a href="{% url 'main' %}"><img class="mb-4" src="{% static 'img/logo_1.png' %}" height="120px" align="middle"></a>
       </div>
