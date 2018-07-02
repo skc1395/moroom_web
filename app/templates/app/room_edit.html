@@ -174,7 +174,7 @@
         <label for="disabledSelect" style="font-weight:bold;">계약가능여부</label>
         <select class="form-control" name="room_status" id="disabledSelect">
           {% for status in room_status %}
-          <option value="{{ status.id }}" {% if form.status.value == room_type.id %} selected{% endif %}>{{ status.status }}</option>
+          <option value="{{ status.id }}" {% if form.room_status.value == status.id %} selected{% endif %}>{{ status.status }}</option>
           {% endfor %}
         </select>
       </div>
