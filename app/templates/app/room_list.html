@@ -16,7 +16,7 @@
             <div class="card h-80">
             <img class="card-img-top" height="35%" {% if room.room_status.status == 'X' %} src="{% static 'img/closed.png' %}" {% else %} src="{{ room.photo.first.image.url }}"{% endif %} alt="Card image cap">
             <div class="card-body">
-              <h5 class="card-title" style="text-align: center; font-weight:bold;"><a href="{% url 'room_detail' university=room.university.name_eng pk=room.pk %}" style="color:#333333;">[{{ room.door.name }}] {{ room.title }}</a></h5>
+              <h5 class="card-title" style="text-align: center; font-weight:bold;"><a href="{% url 'room_detail' university=room.university.name_eng pk=room.pk %}" style="color:#333333;">[{{ room.door.name }}] {{ room.title|truncatechars:12 }}</a></h5>
               <p class="card-text" style="margin-bottom: 0px;">입주가능일: {{ room.date_start }}</p>
               <p class="card-text" style="margin-bottom: 0px;">계약만기일: {{ room.date_end }}</p>
               <p class="card-text" style="margin-bottom: 0px;">보증금/월세: {{ room.deposit }} / {{ room.rentfee }}</p>
