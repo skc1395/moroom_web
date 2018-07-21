@@ -10,7 +10,7 @@ from . import constant
 
 
 def room_list(request, university):
-    rooms = Room.objects.filter(published_date__lte=timezone.now(), university__name_eng=university).order_by('published_date')
+    rooms = Room.objects.filter(published_date__lte=timezone.now(), university__name_eng=university).order_by('room_status', '-published_date')
     universitys = University.objects.all()
 
     return render(request, 'app/room_list.html', {'rooms': rooms,
