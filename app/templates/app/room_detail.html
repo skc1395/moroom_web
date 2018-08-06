@@ -22,7 +22,10 @@
         <div class="col-lg-10">
           <h1 class="room-title" style="display: inline;">[{{ room.door.name }}] {{ room.title }}</h1>
           {% if request.user.id == room.user.id %}
-          <button type="button" class="btn btn-outline-info" style="float: right;" data-toggle="modal" data-target="#exampleModal">삭제</button>
+          <!-- <button type="button" class="btn btn-outline-info" style="float: right;" data-toggle="modal" data-target="#exampleModal">삭제</button>
+           -->
+
+          <button type="button" class="btn btn-outline-info" style="float: right;" data-toggle="modal" data-target="#exampleModal">계약완료</button>
           <a href="{% url 'room_edit' university=university_name pk=room.pk%}"><button type="button" class="btn btn-outline-info" style="float: right; margin-right:3px; margin-bottom:2px;">수정</button></a>
 
 
@@ -31,16 +34,16 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">방정보 삭제 안내</h5>
+                <h5 class="modal-title" id="exampleModalLabel">방계약완료 안내</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
-                방에 대한 정보를 삭제하시겠습니까?
+                방이 계약완료되었습니까?
               </div>
               <div class="modal-footer">
-                  <a href="{% url 'room_delete' university=university_name pk=room.pk%}"><button type="button" class="btn btn-secondary">네</button></a>
+                  <a href="{% url 'room_complete' university=university_name pk=room.pk %}"><button type="button" class="btn btn-secondary">네</button></a>
                   <a href="{% url 'room_detail' university=university_name pk=room.pk%}"><button type="button" class="btn btn-secondary" data-dismiss="modal">아니오</button></a>
               </div>
             </div>

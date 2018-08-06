@@ -6,7 +6,7 @@ from django.contrib import messages
 from .models import Room, RoomType, RoomAgree, Option, RoomStatus, Photo, University, Door
 from .forms import RoomForm, FileFieldForm
 from .get_geocode import Get_geocode
-from . import constant
+from .import constant
 
 
 def room_list(request, university):
@@ -87,7 +87,7 @@ def room_new(request, university):
         else:
             messages.warning(request, '추가정보를 입력해주세요.')
             return redirect('profile')
-            
+
     return render(request, 'app/room_edit.html', {
     'form': form,
     'files' : files,
@@ -137,7 +137,7 @@ def room_edit(request, university, pk):
     else:
         form = RoomForm(instance=room)
         files = FileFieldForm()
-        
+
     return render(request, 'app/room_edit.html', {
     'form': form,
     'files' : files,
@@ -156,9 +156,18 @@ def room_delete(request, university, pk):
     방을 삭제하는 함수
     """
     room = Room.objects.filter(id=pk, university__name_eng=university).delete()
-
     return redirect('room_list', university=university)
+
+def room_complete(request, university, pk):
+    """
+    방 계약완료 처리하는 함수
+    """
+    room = Room.objects.filter(id=pk, university__name_eng=university)[0]
+    room.room_status.status = RoomStatus.objects.get(status="X")
+    print(room.room_status.status)
+    room.save()
+    print(room.room_status.status)
+    return redirect('room_detail', university=university, pk=pk)
 
 def tutorial(request):
     return render(request, 'app/tutorial.html', {})
-

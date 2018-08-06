@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^$', views.main, name='main'),
     url(r'^room/(?P<university>\w+)/(?P<pk>\d+)/edit/$', views.room_edit, name='room_edit'),
     url(r'^room/(?P<university>\w+)/(?P<pk>\d+)/delete/$', views.room_delete, name='room_delete'),
+    url(r'^room/(?P<university>\w+)/(?P<pk>\d+)/complete/$', views.room_complete, name='room_complete'),
     url(r'^tutorial/$', views.tutorial, name='tutorial'),
 
 ]
