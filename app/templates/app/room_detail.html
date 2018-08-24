@@ -54,17 +54,25 @@
          <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 
                 <div class="carousel-inner">
+                  
                   {% if room.room_status.status == 'X' %}
                     <div class="carousel-item active">
                       <img class="d-block w-100" src="{% static 'img/closed.png' %}" alt="">
                     </div>
                   {% else %}
+                    {% if photos|length > 0 %}
                     {% for photo in photos %}
-                    <div class="carousel-item {% if forloop.first %} active {% endif %}">
-                      <img class="d-block w-100" src="{{ photo.image.url }}" alt="">
-                    </div>
+                      <div class="carousel-item {% if forloop.first %} active {% endif %}">
+                          <img class="d-block w-100" src="{{ photo.image.url }}" alt="">
+                        </div>
                     {% endfor %}
-                  {% endif %}
+                    {% else %}
+                      <div class="carousel-item active">
+                      <img class="d-block w-100" src="{% static 'img/blank.png' %}" alt="">
+                      </div>
+                      
+                    {% endif %}
+                    {% endif %}
                 </div>
 
                 <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
