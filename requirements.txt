@@ -60,7 +60,7 @@ oauth2client==4.1.2
 oauthlib==2.0.6
 pandas==0.20.2
 pandocfilters==1.4.2
-paramiko==2.4.1
+paramiko==2.10.1
 parso==0.1.1
 patsy==0.5.0
 pexpect==4.3.1
